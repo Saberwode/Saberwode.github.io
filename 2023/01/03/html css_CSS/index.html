@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CSS | 一叶凉夏</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里是CSS笔记1.css选择器分为基础选择器和复合选择器2.*&#123;&#125;为通配符选择器，使用他可以将整个网页的样式进行修改3.关于字体：其中font-weight中的属性值：normal 正常， bold 粗体， bolder 特粗， lighter 细体在实际开发中，设置变粗变细一般是使用数字比如normal就是400，再往上加就是变粗700相当于bold 4.font-styl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS">
+<meta property="og:url" content="https://saberwode.github.io/2023/01/03/html%20css_CSS/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:description" content="这里是CSS笔记1.css选择器分为基础选择器和复合选择器2.*&#123;&#125;为通配符选择器，使用他可以将整个网页的样式进行修改3.关于字体：其中font-weight中的属性值：normal 正常， bold 粗体， bolder 特粗， lighter 细体在实际开发中，设置变粗变细一般是使用数字比如normal就是400，再往上加就是变粗700相当于bold 4.font-styl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/blog_img/1.jpg">
+<meta property="article:published_time" content="2023-01-03T06:33:56.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:38:21.022Z">
+<meta property="article:author" content="一叶凉夏">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/blog_img/1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CSS",
+  "url": "https://saberwode.github.io/2023/01/03/html%20css_CSS/",
+  "image": "https://saberwode.github.io/blog_img/1.jpg",
+  "datePublished": "2023-01-03T06:33:56.000Z",
+  "dateModified": "2025-03-18T04:38:21.022Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "一叶凉夏",
+      "url": "https://saberwode.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/2023/01/03/html%20css_CSS/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSS',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog_img/1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a><a class="nav-page-title" href="/"><span class="site-name">CSS</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CSS</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-18T04:38:21.022Z" title="更新于 2025-03-18 12:38:21">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/html-css/">html css</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="这里是CSS笔记"><a href="#这里是CSS笔记" class="headerlink" title="这里是CSS笔记"></a>这里是CSS笔记</h2><h5 id="1-css选择器分为基础选择器和复合选择器"><a href="#1-css选择器分为基础选择器和复合选择器" class="headerlink" title="1.css选择器分为基础选择器和复合选择器"></a>1.css选择器分为基础选择器和复合选择器</h5><h5 id="2-为通配符选择器，使用他可以将整个网页的样式进行修改"><a href="#2-为通配符选择器，使用他可以将整个网页的样式进行修改" class="headerlink" title="2.*{}为通配符选择器，使用他可以将整个网页的样式进行修改"></a>2.<code>*&#123;&#125;为通配符选择器，使用他可以将整个网页的样式进行修改</code></h5><h5 id="3-关于字体："><a href="#3-关于字体：" class="headerlink" title="3.关于字体："></a>3.关于字体：</h5><p>其中font-weight中的属性值：normal 正常， bold 粗体， bolder 特粗， lighter 细体在实际开发中，设置变粗变细一般是使用数字比如normal就是400，再往上加就是变粗700相当于bold</p>
+<h5 id="4-font-style："><a href="#4-font-style：" class="headerlink" title="4.font-style："></a>4.font-style：</h5><p>设置文本风格其中属性值有normal：将文本设置为默认值，italic：将文本设置为斜体</p>
+<h5 id="5-字体总结："><a href="#5-字体总结：" class="headerlink" title="5.字体总结："></a>5.字体总结：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082533684.png" alt="image-20210515082533684" style="zoom: 50%;" />
+
+
+
+<h5 id="6-文本对齐：text-align：其中有center居中-right-右对齐-left左对齐text-decoration：文本装饰：其中有-none-取消线的格式（常用）underline下划线-line-through删除线-文本缩进：text-indent用于指定文本第一行的缩进：em当前文本元素的一个文字大小比如text-indent：2em-就表示段落前开头空两行"><a href="#6-文本对齐：text-align：其中有center居中-right-右对齐-left左对齐text-decoration：文本装饰：其中有-none-取消线的格式（常用）underline下划线-line-through删除线-文本缩进：text-indent用于指定文本第一行的缩进：em当前文本元素的一个文字大小比如text-indent：2em-就表示段落前开头空两行" class="headerlink" title="6.文本对齐：text-align：其中有center居中 right 右对齐 left左对齐text-decoration：文本装饰：其中有  none 取消线的格式（常用）underline下划线 line-through删除线 文本缩进：text-indent用于指定文本第一行的缩进：em当前文本元素的一个文字大小比如text-indent：2em 就表示段落前开头空两行"></a>6.文本对齐：text-align：其中有center居中 right 右对齐 left左对齐text-decoration：文本装饰：其中有  none 取消线的格式（常用）underline下划线 line-through删除线 文本缩进：text-indent用于指定文本第一行的缩进：em当前文本元素的一个文字大小比如text-indent：2em 就表示段落前开头空两行</h5><h5 id="7-文本总结："><a href="#7-文本总结：" class="headerlink" title="7.文本总结："></a>7.文本总结：</h5><img src="C:\Users\gjm\AppData\Local\Temp\Image.png" alt="Image" style="zoom:33%;" />
+
+
+
+<h5 id="8-emmet语法："><a href="#8-emmet语法：" class="headerlink" title="8.emmet语法："></a>8.emmet语法：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082557699.png" alt="image-20210515082557699" style="zoom: 50%;" />
+
+
+
+<h5 id="9-id选择器："><a href="#9-id选择器：" class="headerlink" title="9.id选择器："></a>9.id选择器：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082617267.png" alt="image-20210515082617267" style="zoom:50%;" />
+
+
+
+<h5 id="10-后代选择器：例如-我是li我是a-当你想把“我是li”改成其他样式的时候，可以进行-ul-li-操作-而对我是a进行操作的时候，用ul-li-a-进行操作"><a href="#10-后代选择器：例如-我是li我是a-当你想把“我是li”改成其他样式的时候，可以进行-ul-li-操作-而对我是a进行操作的时候，用ul-li-a-进行操作" class="headerlink" title="10.后代选择器：例如         我是li我是a   当你想把“我是li”改成其他样式的时候，可以进行 ul li {}操作 而对我是a进行操作的时候，用ul li a{}进行操作"></a>10.后代选择器：例如<ul>        <li> 我是li<a href="">我是a</a></li>   </ul>当你想把“我是li”改成其他样式的时候，可以进行 ul li {}操作 而对我是a进行操作的时候，用ul li a{}进行操作</h5><h5 id="11-子选择器子选择器只会选择最近一级的元素比如：我是1-我是2-当你想选“我是2的时候”就用-div-a"><a href="#11-子选择器子选择器只会选择最近一级的元素比如：我是1-我是2-当你想选“我是2的时候”就用-div-a" class="headerlink" title="11.子选择器子选择器只会选择最近一级的元素比如：我是1         我是2          当你想选“我是2的时候”就用 div &gt;a {}"></a>11.子选择器子选择器只会选择最近一级的元素比如：<div><a>我是1</a><p>       <a>  我是2</a>        </p></div>  当你想选“我是2的时候”就用 div &gt;a {}</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082642959.png" alt="image-20210515082642959" style="zoom:50%;" />
+
+
+
+<h5 id="12-链接伪选择器："><a href="#12-链接伪选择器：" class="headerlink" title="12.链接伪选择器："></a>12.链接伪选择器：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082700215.png" alt="image-20210515082700215" style="zoom:50%;" />
+
+
+
+<h5 id="13-focus伪类选择器："><a href="#13-focus伪类选择器：" class="headerlink" title="13.focus伪类选择器："></a>13.focus伪类选择器：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082717064.png" alt="image-20210515082717064" style="zoom:50%;" />
+
+
+
+<h5 id="14-复合选择器总结："><a href="#14-复合选择器总结：" class="headerlink" title="14.复合选择器总结："></a>14.复合选择器总结：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082732989.png" alt="image-20210515082732989" style="zoom:50%;" />
+
+
+
+<h5 id="15-块元素：特别注意："><a href="#15-块元素：特别注意：" class="headerlink" title="15.块元素：特别注意："></a>15.块元素：特别注意：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082756649.png" alt="image-20210515082756649" style="zoom:50%;" />
+
+<img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082825107.png" alt="image-20210515082825107" style="zoom:50%;" />
+
+
+
+
+
+<h5 id="16-行内元素："><a href="#16-行内元素：" class="headerlink" title="16.行内元素："></a>16.行内元素：</h5><h5 id="17-行内块元素："><a href="#17-行内块元素：" class="headerlink" title="17.行内块元素："></a>17.行内块元素：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082852377.png" alt="image-20210515082852377" style="zoom:50%;" />
+
+
+
+<h5 id="18：display：block（将行内元素转化为块元素）"><a href="#18：display：block（将行内元素转化为块元素）" class="headerlink" title="18：display：block（将行内元素转化为块元素）"></a>18：display：block（将行内元素转化为块元素）</h5><h5 id="19：同18元素模式转换："><a href="#19：同18元素模式转换：" class="headerlink" title="19：同18元素模式转换："></a>19：同18元素模式转换：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082912820.png" alt="image-20210515082912820" style="zoom:50%;" />
+
+
+
+<h5 id="20-background-repeat属性：背景平铺"><a href="#20-background-repeat属性：背景平铺" class="headerlink" title="20:background-repeat属性：背景平铺"></a>20:background-repeat属性：背景平铺</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082933071.png" alt="image-20210515082933071" style="zoom:50%;" />
+
+
+
+<h5 id="21：背景图片位置：background-position"><a href="#21：背景图片位置：background-position" class="headerlink" title="21：背景图片位置：background-position"></a>21：背景图片位置：background-position</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515082957386.png" alt="image-20210515082957386" style="zoom:50%;" />
+
+
+
+<h5 id="23-CSS背景总结："><a href="#23-CSS背景总结：" class="headerlink" title="23.CSS背景总结："></a>23.CSS背景总结：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083013567.png" alt="image-20210515083013567" style="zoom:50%;" />
+
+
+
+<h5 id="24-行高的继承："><a href="#24-行高的继承：" class="headerlink" title="24.行高的继承："></a>24.行高的继承：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083029835.png" alt="image-20210515083029835" style="zoom:50%;" />
+
+
+
+<h5 id="25-盒子模型："><a href="#25-盒子模型：" class="headerlink" title="25.盒子模型："></a>25.盒子模型：</h5><p>边框：border:border-style：边框样式 solid 实线 dashed 虚线 dotted 点线</p>
+<h5 id="26-边框可以为单独的一个边指定样式："><a href="#26-边框可以为单独的一个边指定样式：" class="headerlink" title="26.边框可以为单独的一个边指定样式："></a>26.边框可以为单独的一个边指定样式：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083045316.png" alt="image-20210515083045316" style="zoom:50%;" />
+
+
+
+<h5 id="27-合并相邻边框：border-collapse：collapse-相邻边框合并在一起，因为相邻边框在一起会产生重叠的效果"><a href="#27-合并相邻边框：border-collapse：collapse-相邻边框合并在一起，因为相邻边框在一起会产生重叠的效果" class="headerlink" title="27.合并相邻边框：border-collapse：collapse 相邻边框合并在一起，因为相邻边框在一起会产生重叠的效果"></a>27.合并相邻边框：border-collapse：collapse 相邻边框合并在一起，因为相邻边框在一起会产生重叠的效果</h5><h5 id="28-盒子模型：内边距padding"><a href="#28-盒子模型：内边距padding" class="headerlink" title="28.盒子模型：内边距padding"></a>28.盒子模型：内边距padding</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083102342.png" alt="image-20210515083102342" style="zoom:50%;" />
+
+
+
+<h5 id="29-关于内边距padding的简写："><a href="#29-关于内边距padding的简写：" class="headerlink" title="29.关于内边距padding的简写："></a>29.关于内边距padding的简写：</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083114715.png" alt="image-20210515083114715" style="zoom:50%;" />
+
+
+
+<h5 id="30-如果已经指定了盒子的大小，再对其进行内边距的设置，会撑大盒子。"><a href="#30-如果已经指定了盒子的大小，再对其进行内边距的设置，会撑大盒子。" class="headerlink" title="30.如果已经指定了盒子的大小，再对其进行内边距的设置，会撑大盒子。"></a>30.如果已经指定了盒子的大小，再对其进行内边距的设置，会撑大盒子。</h5><h5 id="31-外边距margin同理简写方式与padding一致（先上下，后左右）"><a href="#31-外边距margin同理简写方式与padding一致（先上下，后左右）" class="headerlink" title="31.外边距margin同理简写方式与padding一致（先上下，后左右）"></a>31.外边距margin同理简写方式与padding一致（先上下，后左右）</h5><h5 id="32-行内元素或者行内块元素水平居中要给其父元素添加-text-align：center"><a href="#32-行内元素或者行内块元素水平居中要给其父元素添加-text-align：center" class="headerlink" title="32.行内元素或者行内块元素水平居中要给其父元素添加 text-align：center"></a>32.行内元素或者行内块元素水平居中要给其父元素添加 text-align：center</h5><h5 id="33-块元素想设置水平居中需要给盒子的左右外边距设置为auto"><a href="#33-块元素想设置水平居中需要给盒子的左右外边距设置为auto" class="headerlink" title="33.块元素想设置水平居中需要给盒子的左右外边距设置为auto"></a>33.块元素想设置水平居中需要给盒子的左右外边距设置为auto</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083131675.png" alt="image-20210515083131675" style="zoom:50%;" />
+
+
+
+<h5 id="34"><a href="#34" class="headerlink" title="34."></a>34.</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083153060.png" alt="image-20210515083153060" style="zoom:50%;" />
+
+
+
+<h5 id="35-圆角边框"><a href="#35-圆角边框" class="headerlink" title="35.圆角边框"></a>35.圆角边框</h5><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083209161.png" alt="image-20210515083209161" style="zoom:50%;" />
+
+<p>css3新增</p>
+<img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083242267.png" alt="image-20210515083242267" style="zoom:50%;" />
+
+<p>其数值与上图一一对应注意:outset一定不能写进去，写进去的只能是outset</p>
+<h5 id="36"><a href="#36" class="headerlink" title="36."></a>36.<img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083322728.png" alt="image-20210515083322728" style="zoom: 50%;" /></h5><p>其数值与上图一一对应注意:outset一定不能写进去，写进去的只能是outset</p>
+<h5 id="37"><a href="#37" class="headerlink" title="37."></a>37.<img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083400977.png" alt="image-20210515083400977" style="zoom: 50%;" /></h5><h5 id="38-浮动："><a href="#38-浮动：" class="headerlink" title="38.浮动："></a>38.浮动：<img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083422202.png" alt="image-20210515083422202"></h5><h5 id="39-浮动元素经常与标准父级搭配使用："><a href="#39-浮动元素经常与标准父级搭配使用：" class="headerlink" title="39.浮动元素经常与标准父级搭配使用："></a>39.浮动元素经常与标准父级搭配使用：</h5><p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083435080.png" alt="image-20210515083435080"></p>
+<h5 id="40-清除浮动的必要性："><a href="#40-清除浮动的必要性：" class="headerlink" title="40.清除浮动的必要性："></a>40.清除浮动的必要性：</h5><p>在很多时候，你想要对页面进行布局，你需要先设置一个大的盒子，然后再设置几个小的盒子，然后进行浮动，达到盒子与盒子之间无间距的目的，但是使用浮动的话，当前的盒子所在的位置就会消失，因此，当盒子只有一排的时候，可能会出现当前排都消失的情况。所以需要清除浮动的影响。</p>
+<p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083451828.png" alt="image-20210515083451828"></p>
+<h5 id="41-清除浮动方法："><a href="#41-清除浮动方法：" class="headerlink" title="41.清除浮动方法："></a>41.清除浮动方法：</h5><p>  另外一种方法就是在父元素上添加 overflow ：hidden ，也是可以起到清除浮动的方法</p>
+<ol start="42">
+<li></li>
+</ol>
+<p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083503060.png" alt="image-20210515083503060"> 	</p>
+<h5 id="43-css书写顺序规范："><a href="#43-css书写顺序规范：" class="headerlink" title="43.css书写顺序规范："></a>43.css书写顺序规范：</h5><p>&#x3D;&#x3D;重点：&#x3D;&#x3D;</p>
+<p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083516428.png" alt="image-20210515083516428"></p>
+<h5 id="44-导航栏注意："><a href="#44-导航栏注意：" class="headerlink" title="44.导航栏注意："></a>44.导航栏注意：</h5><p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083614348.png" alt="image-20210515083614348"></p>
+<h5 id="45-一个浮动，全部都要浮动，不然就浮不上去"><a href="#45-一个浮动，全部都要浮动，不然就浮不上去" class="headerlink" title="45.一个浮动，全部都要浮动，不然就浮不上去"></a>45.一个浮动，全部都要浮动，不然就浮不上去</h5><h5 id="46-导航栏设计："><a href="#46-导航栏设计：" class="headerlink" title="46.导航栏设计："></a>46.导航栏设计：</h5><p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515083629946.png" alt="image-20210515083629946"></p>
+<h5 id="47-文本对齐方式："><a href="#47-文本对齐方式：" class="headerlink" title="47.文本对齐方式："></a>47.文本对齐方式：</h5><p>text-align: center</p>
+<h5 id="48-让盒子居中对齐："><a href="#48-让盒子居中对齐：" class="headerlink" title="48.让盒子居中对齐："></a>48.让盒子居中对齐：</h5><p>margin:0 auto;其中auto是第二个值，代表了左右居中对齐 而第一个0代表了上下外边距为0</p>
+<h5 id="49-letter-spacing："><a href="#49-letter-spacing：" class="headerlink" title="49.letter-spacing："></a>49.letter-spacing：</h5><p>设置元素字母间距</p>
+<h5 id="50-cursor："><a href="#50-cursor：" class="headerlink" title="50.cursor："></a>50.cursor：</h5><p>设置鼠标指针的变化：</p>
+<img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210515094841186.png" alt="image-20210515094841186" style="zoom: 33%;" />
+
+
+
+<h4 id="51-盒模型设置："><a href="#51-盒模型设置：" class="headerlink" title="51.盒模型设置："></a>51.盒模型设置：</h4><p>box-sizing:border-box;对于有些情况下，内外边距和边框会对box本身的大小造成影响，进而对布局造成影响</p>
+<p>所以通常用<code>box-sizing:border-box</code>对其进行设置。这么做的效果就是，他的大小不会因为内外边距而改变，而会将图像本身向内缩小</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">	<span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">	//整体设置，清除内外边距，并且将<span class="attribute">box-sizing</span>设置为borderbox</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="52-flex-1"><a href="#52-flex-1" class="headerlink" title="52.flex:1;"></a>52.flex:1;</h4><p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210716151753299.png" alt="image-20210716151753299"></p>
+<h4 id="53-设置断点："><a href="#53-设置断点：" class="headerlink" title="53.设置断点："></a>53.设置断点：</h4><p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210716171117075.png" alt="image-20210716171117075"></p>
+<h4 id="54-背景缩放；"><a href="#54-背景缩放；" class="headerlink" title="54.背景缩放；"></a>54.背景缩放；</h4><p><img src="C:\Users\gjm\AppData\Roaming\Typora\typora-user-images\image-20210718110603955.png" alt="image-20210718110603955"></p>
+<h4 id="55-规定文本不换行："><a href="#55-规定文本不换行：" class="headerlink" title="55.规定文本不换行："></a>55.规定文本不换行：</h4><p><code>white-space:nowrap</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saberwode.github.io">一叶凉夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saberwode.github.io/2023/01/03/html%20css_CSS/">https://saberwode.github.io/2023/01/03/html%20css_CSS/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saberwode.github.io" target="_blank">一叶凉夏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post-share"><div class="social-share" data-image="/blog_img/1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/01/03/git_git/" title="git"><img class="cover" src="/blog_img/3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">git</div></div><div class="info-2"><div class="info-item-1">Git1.git打tag可以在git commit提交之后，可以通过git tag “名字”打一个tag，然后通过git push origin master --tags将本地分支提交到GitHub上，提交不上就多提交几次 2.git将本地与仓库进度同步123git fetch --all #取回远程库的所有操作git reset --hard origin/master #指向远程库origin的mastergit pull #把远程库拉取到本地库  </div></div></div></a><a class="pagination-related" href="/2023/01/03/html%20css_Gride%E5%B8%83%E5%B1%80/" title="Gride布局"><img class="cover" src="/blog_img/9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Gride布局</div></div><div class="info-2"><div class="info-item-1">3.grid布局： 划分行列  grid-template-columns：列宽 grid-template-rows	：行高 12345.container &#123;  display: grid;  grid-template-columns: 100px 100px 100px;  grid-template-rows: 33.33% 33.33% 33.33%;&#125;  其中几个参数就是几行几列 12345.container &#123;  display: grid;  grid-template-columns: repeat(3, 33.33%);  grid-template-rows: repeat(3, 33.33%);&#125;  repeat重复几次 1grid-template-columns: repeat(2, 100px 20px 80px);  将100px 20px 80px重复两次 1234.container &#123;  display: grid;  grid-template-columns:...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/01/03/TypeScript_TypeScript/" title="TypeScript"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">TypeScript</div></div><div class="info-2"><div class="info-item-1">TypeScript学习1.never类型never类型主要应用于以下场景 比方说有一个函数 123456789101112function handleMessage(message: string | number)&#123;  switch (typeof message)&#123;    case &#x27;string&#x27;:      console.log(&#x27;string处理message&#x27;);      break;    case &#x27;number&#x27;:      console.log(&#x27;number处理message&#x27;);      break;    //default:    //  const check: never = message  &#125;&#125;  此时函数支持的参数有string和number类型的，如果有一个人想去传一个boolean类型的参数，首先肯定是会报错的，但是如果修改了hadleMessage函数的话，比如在参数中添加|...</div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E8%A7%86%E9%A2%91%E8%BF%9B%E5%BA%A6/" title="视频进度"><img class="cover" src="/blog_img/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">视频进度</div></div><div class="info-2"><div class="info-item-1">视频进度实战11    					看完了 js高级						1：34 </div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" title="遇到的坑"><img class="cover" src="/blog_img/1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">遇到的坑</div></div><div class="info-2"><div class="info-item-1">坑1.当使用prettier进行对代码进行规范限制的时候，使用editorconfig和prettier中vscode的插件都正常启用时候，发现对ts代码的格式化不起作用 方法：按ctrl+shift+t打开settting.json加入&quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;, 就可以了 </div></div></div></a><a class="pagination-related" href="/2023/01/03/api/" title="api"><img class="cover" src="/blog_img/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">api</div></div><div class="info-2"><div class="info-item-1">1https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api  老师的api </div></div></div></a><a class="pagination-related" href="/2023/01/03/es6_%E8%A7%A3%E6%9E%84/" title="解构"><img class="cover" src="/blog_img/7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">解构</div></div><div class="info-2"><div class="info-item-1">1....解构先上个例子： 首先有一个数组：stack 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27; &#125; ]  然后想将另一个数组给加进来:req.body.content 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/git%20clone%E9%97%AE%E9%A2%98/" title="git clone问题"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">git clone问题</div></div><div class="info-2"><div class="info-item-1">报错error: RPC failed; result&#x3D;35, HTTP code &#x3D; 0fatal: The remote end hung up unexpectedly a: 1,2,3 b:1,2 c:,1 a:1,2 b:1 c:压入栈 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E9%87%8C%E6%98%AFCSS%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">这里是CSS笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-css%E9%80%89%E6%8B%A9%E5%99%A8%E5%88%86%E4%B8%BA%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8%E5%92%8C%E5%A4%8D%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.css选择器分为基础选择器和复合选择器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%B8%BA%E9%80%9A%E9%85%8D%E7%AC%A6%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%8C%E4%BD%BF%E7%94%A8%E4%BB%96%E5%8F%AF%E4%BB%A5%E5%B0%86%E6%95%B4%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E6%A0%B7%E5%BC%8F%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">2.*{}为通配符选择器，使用他可以将整个网页的样式进行修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%85%B3%E4%BA%8E%E5%AD%97%E4%BD%93%EF%BC%9A"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">3.关于字体：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-font-style%EF%BC%9A"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">4.font-style：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E5%AD%97%E4%BD%93%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">5.字体总结：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90%EF%BC%9Atext-align%EF%BC%9A%E5%85%B6%E4%B8%AD%E6%9C%89center%E5%B1%85%E4%B8%AD-right-%E5%8F%B3%E5%AF%B9%E9%BD%90-left%E5%B7%A6%E5%AF%B9%E9%BD%90text-decoration%EF%BC%9A%E6%96%87%E6%9C%AC%E8%A3%85%E9%A5%B0%EF%BC%9A%E5%85%B6%E4%B8%AD%E6%9C%89-none-%E5%8F%96%E6%B6%88%E7%BA%BF%E7%9A%84%E6%A0%BC%E5%BC%8F%EF%BC%88%E5%B8%B8%E7%94%A8%EF%BC%89underline%E4%B8%8B%E5%88%92%E7%BA%BF-line-through%E5%88%A0%E9%99%A4%E7%BA%BF-%E6%96%87%E6%9C%AC%E7%BC%A9%E8%BF%9B%EF%BC%9Atext-indent%E7%94%A8%E4%BA%8E%E6%8C%87%E5%AE%9A%E6%96%87%E6%9C%AC%E7%AC%AC%E4%B8%80%E8%A1%8C%E7%9A%84%E7%BC%A9%E8%BF%9B%EF%BC%9Aem%E5%BD%93%E5%89%8D%E6%96%87%E6%9C%AC%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%B8%AA%E6%96%87%E5%AD%97%E5%A4%A7%E5%B0%8F%E6%AF%94%E5%A6%82text-indent%EF%BC%9A2em-%E5%B0%B1%E8%A1%A8%E7%A4%BA%E6%AE%B5%E8%90%BD%E5%89%8D%E5%BC%80%E5%A4%B4%E7%A9%BA%E4%B8%A4%E8%A1%8C"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">6.文本对齐：text-align：其中有center居中 right 右对齐 left左对齐text-decoration：文本装饰：其中有  none 取消线的格式（常用）underline下划线 line-through删除线 文本缩进：text-indent用于指定文本第一行的缩进：em当前文本元素的一个文字大小比如text-indent：2em 就表示段落前开头空两行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E6%96%87%E6%9C%AC%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">1.0.0.7.</span> <span class="toc-text">7.文本总结：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-emmet%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">1.0.0.8.</span> <span class="toc-text">8.emmet语法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-id%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A"><span class="toc-number">1.0.0.9.</span> <span class="toc-text">9.id选择器：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10-%E5%90%8E%E4%BB%A3%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A%E4%BE%8B%E5%A6%82-%E6%88%91%E6%98%AFli%E6%88%91%E6%98%AFa-%E5%BD%93%E4%BD%A0%E6%83%B3%E6%8A%8A%E2%80%9C%E6%88%91%E6%98%AFli%E2%80%9D%E6%94%B9%E6%88%90%E5%85%B6%E4%BB%96%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C-ul-li-%E6%93%8D%E4%BD%9C-%E8%80%8C%E5%AF%B9%E6%88%91%E6%98%AFa%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E7%94%A8ul-li-a-%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">1.0.0.10.</span> <span class="toc-text">10.后代选择器：例如         我是li我是a   当你想把“我是li”改成其他样式的时候，可以进行 ul li {}操作 而对我是a进行操作的时候，用ul li a{}进行操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11-%E5%AD%90%E9%80%89%E6%8B%A9%E5%99%A8%E5%AD%90%E9%80%89%E6%8B%A9%E5%99%A8%E5%8F%AA%E4%BC%9A%E9%80%89%E6%8B%A9%E6%9C%80%E8%BF%91%E4%B8%80%E7%BA%A7%E7%9A%84%E5%85%83%E7%B4%A0%E6%AF%94%E5%A6%82%EF%BC%9A%E6%88%91%E6%98%AF1-%E6%88%91%E6%98%AF2-%E5%BD%93%E4%BD%A0%E6%83%B3%E9%80%89%E2%80%9C%E6%88%91%E6%98%AF2%E7%9A%84%E6%97%B6%E5%80%99%E2%80%9D%E5%B0%B1%E7%94%A8-div-a"><span class="toc-number">1.0.0.11.</span> <span class="toc-text">11.子选择器子选择器只会选择最近一级的元素比如：我是1         我是2          当你想选“我是2的时候”就用 div &gt;a {}</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-%E9%93%BE%E6%8E%A5%E4%BC%AA%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A"><span class="toc-number">1.0.0.12.</span> <span class="toc-text">12.链接伪选择器：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#13-focus%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A"><span class="toc-number">1.0.0.13.</span> <span class="toc-text">13.focus伪类选择器：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#14-%E5%A4%8D%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">1.0.0.14.</span> <span class="toc-text">14.复合选择器总结：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#15-%E5%9D%97%E5%85%83%E7%B4%A0%EF%BC%9A%E7%89%B9%E5%88%AB%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-number">1.0.0.15.</span> <span class="toc-text">15.块元素：特别注意：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#16-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%EF%BC%9A"><span class="toc-number">1.0.0.16.</span> <span class="toc-text">16.行内元素：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#17-%E8%A1%8C%E5%86%85%E5%9D%97%E5%85%83%E7%B4%A0%EF%BC%9A"><span class="toc-number">1.0.0.17.</span> <span class="toc-text">17.行内块元素：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#18%EF%BC%9Adisplay%EF%BC%9Ablock%EF%BC%88%E5%B0%86%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%9D%97%E5%85%83%E7%B4%A0%EF%BC%89"><span class="toc-number">1.0.0.18.</span> <span class="toc-text">18：display：block（将行内元素转化为块元素）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#19%EF%BC%9A%E5%90%8C18%E5%85%83%E7%B4%A0%E6%A8%A1%E5%BC%8F%E8%BD%AC%E6%8D%A2%EF%BC%9A"><span class="toc-number">1.0.0.19.</span> <span class="toc-text">19：同18元素模式转换：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#20-background-repeat%E5%B1%9E%E6%80%A7%EF%BC%9A%E8%83%8C%E6%99%AF%E5%B9%B3%E9%93%BA"><span class="toc-number">1.0.0.20.</span> <span class="toc-text">20:background-repeat属性：背景平铺</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#21%EF%BC%9A%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E4%BD%8D%E7%BD%AE%EF%BC%9Abackground-position"><span class="toc-number">1.0.0.21.</span> <span class="toc-text">21：背景图片位置：background-position</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#23-CSS%E8%83%8C%E6%99%AF%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">1.0.0.22.</span> <span class="toc-text">23.CSS背景总结：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#24-%E8%A1%8C%E9%AB%98%E7%9A%84%E7%BB%A7%E6%89%BF%EF%BC%9A"><span class="toc-number">1.0.0.23.</span> <span class="toc-text">24.行高的继承：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#25-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.0.0.24.</span> <span class="toc-text">25.盒子模型：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#26-%E8%BE%B9%E6%A1%86%E5%8F%AF%E4%BB%A5%E4%B8%BA%E5%8D%95%E7%8B%AC%E7%9A%84%E4%B8%80%E4%B8%AA%E8%BE%B9%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.0.0.25.</span> <span class="toc-text">26.边框可以为单独的一个边指定样式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#27-%E5%90%88%E5%B9%B6%E7%9B%B8%E9%82%BB%E8%BE%B9%E6%A1%86%EF%BC%9Aborder-collapse%EF%BC%9Acollapse-%E7%9B%B8%E9%82%BB%E8%BE%B9%E6%A1%86%E5%90%88%E5%B9%B6%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%8C%E5%9B%A0%E4%B8%BA%E7%9B%B8%E9%82%BB%E8%BE%B9%E6%A1%86%E5%9C%A8%E4%B8%80%E8%B5%B7%E4%BC%9A%E4%BA%A7%E7%94%9F%E9%87%8D%E5%8F%A0%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">1.0.0.26.</span> <span class="toc-text">27.合并相邻边框：border-collapse：collapse 相邻边框合并在一起，因为相邻边框在一起会产生重叠的效果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#28-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%86%85%E8%BE%B9%E8%B7%9Dpadding"><span class="toc-number">1.0.0.27.</span> <span class="toc-text">28.盒子模型：内边距padding</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#29-%E5%85%B3%E4%BA%8E%E5%86%85%E8%BE%B9%E8%B7%9Dpadding%E7%9A%84%E7%AE%80%E5%86%99%EF%BC%9A"><span class="toc-number">1.0.0.28.</span> <span class="toc-text">29.关于内边距padding的简写：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#30-%E5%A6%82%E6%9E%9C%E5%B7%B2%E7%BB%8F%E6%8C%87%E5%AE%9A%E4%BA%86%E7%9B%92%E5%AD%90%E7%9A%84%E5%A4%A7%E5%B0%8F%EF%BC%8C%E5%86%8D%E5%AF%B9%E5%85%B6%E8%BF%9B%E8%A1%8C%E5%86%85%E8%BE%B9%E8%B7%9D%E7%9A%84%E8%AE%BE%E7%BD%AE%EF%BC%8C%E4%BC%9A%E6%92%91%E5%A4%A7%E7%9B%92%E5%AD%90%E3%80%82"><span class="toc-number">1.0.0.29.</span> <span class="toc-text">30.如果已经指定了盒子的大小，再对其进行内边距的设置，会撑大盒子。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#31-%E5%A4%96%E8%BE%B9%E8%B7%9Dmargin%E5%90%8C%E7%90%86%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F%E4%B8%8Epadding%E4%B8%80%E8%87%B4%EF%BC%88%E5%85%88%E4%B8%8A%E4%B8%8B%EF%BC%8C%E5%90%8E%E5%B7%A6%E5%8F%B3%EF%BC%89"><span class="toc-number">1.0.0.30.</span> <span class="toc-text">31.外边距margin同理简写方式与padding一致（先上下，后左右）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#32-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%88%96%E8%80%85%E8%A1%8C%E5%86%85%E5%9D%97%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD%E8%A6%81%E7%BB%99%E5%85%B6%E7%88%B6%E5%85%83%E7%B4%A0%E6%B7%BB%E5%8A%A0-text-align%EF%BC%9Acenter"><span class="toc-number">1.0.0.31.</span> <span class="toc-text">32.行内元素或者行内块元素水平居中要给其父元素添加 text-align：center</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#33-%E5%9D%97%E5%85%83%E7%B4%A0%E6%83%B3%E8%AE%BE%E7%BD%AE%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD%E9%9C%80%E8%A6%81%E7%BB%99%E7%9B%92%E5%AD%90%E7%9A%84%E5%B7%A6%E5%8F%B3%E5%A4%96%E8%BE%B9%E8%B7%9D%E8%AE%BE%E7%BD%AE%E4%B8%BAauto"><span class="toc-number">1.0.0.32.</span> <span class="toc-text">33.块元素想设置水平居中需要给盒子的左右外边距设置为auto</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#34"><span class="toc-number">1.0.0.33.</span> <span class="toc-text">34.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#35-%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86"><span class="toc-number">1.0.0.34.</span> <span class="toc-text">35.圆角边框</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#36"><span class="toc-number">1.0.0.35.</span> <span class="toc-text">36.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#37"><span class="toc-number">1.0.0.36.</span> <span class="toc-text">37.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#38-%E6%B5%AE%E5%8A%A8%EF%BC%9A"><span class="toc-number">1.0.0.37.</span> <span class="toc-text">38.浮动：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#39-%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E7%BB%8F%E5%B8%B8%E4%B8%8E%E6%A0%87%E5%87%86%E7%88%B6%E7%BA%A7%E6%90%AD%E9%85%8D%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">1.0.0.38.</span> <span class="toc-text">39.浮动元素经常与标准父级搭配使用：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#40-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7%EF%BC%9A"><span class="toc-number">1.0.0.39.</span> <span class="toc-text">40.清除浮动的必要性：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#41-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.0.0.40.</span> <span class="toc-text">41.清除浮动方法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#43-css%E4%B9%A6%E5%86%99%E9%A1%BA%E5%BA%8F%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="toc-number">1.0.0.41.</span> <span class="toc-text">43.css书写顺序规范：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#44-%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-number">1.0.0.42.</span> <span class="toc-text">44.导航栏注意：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#45-%E4%B8%80%E4%B8%AA%E6%B5%AE%E5%8A%A8%EF%BC%8C%E5%85%A8%E9%83%A8%E9%83%BD%E8%A6%81%E6%B5%AE%E5%8A%A8%EF%BC%8C%E4%B8%8D%E7%84%B6%E5%B0%B1%E6%B5%AE%E4%B8%8D%E4%B8%8A%E5%8E%BB"><span class="toc-number">1.0.0.43.</span> <span class="toc-text">45.一个浮动，全部都要浮动，不然就浮不上去</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#46-%E5%AF%BC%E8%88%AA%E6%A0%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="toc-number">1.0.0.44.</span> <span class="toc-text">46.导航栏设计：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#47-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.0.0.45.</span> <span class="toc-text">47.文本对齐方式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#48-%E8%AE%A9%E7%9B%92%E5%AD%90%E5%B1%85%E4%B8%AD%E5%AF%B9%E9%BD%90%EF%BC%9A"><span class="toc-number">1.0.0.46.</span> <span class="toc-text">48.让盒子居中对齐：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#49-letter-spacing%EF%BC%9A"><span class="toc-number">1.0.0.47.</span> <span class="toc-text">49.letter-spacing：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#50-cursor%EF%BC%9A"><span class="toc-number">1.0.0.48.</span> <span class="toc-text">50.cursor：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#51-%E7%9B%92%E6%A8%A1%E5%9E%8B%E8%AE%BE%E7%BD%AE%EF%BC%9A"><span class="toc-number">1.0.1.</span> <span class="toc-text">51.盒模型设置：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-flex-1"><span class="toc-number">1.0.2.</span> <span class="toc-text">52.flex:1;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#53-%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9%EF%BC%9A"><span class="toc-number">1.0.3.</span> <span class="toc-text">53.设置断点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#54-%E8%83%8C%E6%99%AF%E7%BC%A9%E6%94%BE%EF%BC%9B"><span class="toc-number">1.0.4.</span> <span class="toc-text">54.背景缩放；</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#55-%E8%A7%84%E5%AE%9A%E6%96%87%E6%9C%AC%E4%B8%8D%E6%8D%A2%E8%A1%8C%EF%BC%9A"><span class="toc-number">1.0.5.</span> <span class="toc-text">55.规定文本不换行：</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

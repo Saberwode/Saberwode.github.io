@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一叶凉夏 - 来了</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="一叶凉夏">
+<meta property="og:url" content="https://saberwode.github.io/page/3/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/img/cat.gif">
+<meta property="article:author" content="一叶凉夏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/img/cat.gif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一叶凉夏',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/luying.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">一叶凉夏</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/html%20css_CSS/" title="CSS"><img class="post-bg" src="/blog_img/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/html%20css_CSS/" title="CSS">CSS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/html-css/">html css</a></span></div><div class="content">这里是CSS笔记1.css选择器分为基础选择器和复合选择器2.*&#123;&#125;为通配符选择器，使用他可以将整个网页的样式进行修改3.关于字体：其中font-weight中的属性值：normal 正常， bold 粗体， bolder 特粗， lighter 细体在实际开发中，设置变粗变细一般是使用数字比如normal就是400，再往上加就是变粗700相当于bold 4.font-style：设置文本风格其中属性值有normal：将文本设置为默认值，italic：将文本设置为斜体 5.字体总结：    6.文本对齐：text-align：其中有center居中 right 右对齐 left左对齐text-decoration：文本装饰：其中有  none 取消线的格式（常用）underline下划线 line-through删除线 文本缩进：text-indent用于指定文本第一行的缩进：em当前文本元素的一个文字大小比如text-indent：2em 就表示段落前开头空两行7.文本总结：    8.emmet语法：    9.id选择器：    10.后代选择器：例如...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/html%20css_Gride%E5%B8%83%E5%B1%80/" title="Gride布局"><img class="post-bg" src="/blog_img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Gride布局"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/html%20css_Gride%E5%B8%83%E5%B1%80/" title="Gride布局">Gride布局</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/html-css/">html css</a></span></div><div class="content">3.grid布局： 划分行列  grid-template-columns：列宽 grid-template-rows	：行高 12345.container &#123;  display: grid;  grid-template-columns: 100px 100px 100px;  grid-template-rows: 33.33% 33.33% 33.33%;&#125;  其中几个参数就是几行几列 12345.container &#123;  display: grid;  grid-template-columns: repeat(3, 33.33%);  grid-template-rows: repeat(3, 33.33%);&#125;  repeat重复几次 1grid-template-columns: repeat(2, 100px 20px 80px);  将100px 20px 80px重复两次 1234.container &#123;  display: grid;  grid-template-columns:...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/html%20css_HTML/" title="HTML"><img class="post-bg" src="/blog_img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/html%20css_HTML/" title="HTML">HTML</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/html-css/">html css</a></span></div><div class="content">这里是HTML笔记1.a元素中的target属性的值： _blank：浏览器新打开页面加载 _self：默认目标，在相同窗口加载 _parent：父窗口打开 _top：载入包含这个超链接的窗口  2.  &lt; img&gt;标签： src属性用于描述路径 alt属性用于加载不成功时显示内容 title属性用于鼠标悬停在图片上显示提示文字  3.&lt; div&gt;标签：用于布局，div内的字体独占一行 下一个div块会自动另起一行 4.&lt; b&gt;加粗 &lt; strong&gt;加粗且强调 &lt; i&gt;文字倾斜 &lt; em&gt;倾斜且强调 &lt; pre&gt;保留文本的换行和空格 宽度5.&lt; sub&gt;和&lt; sup&gt;设置文本的上标和下标 上标就比如是（二次方）的形式6.转义字符：(&amp;lt; ) 小于号（&lt;） (&amp;gt; )大于号 ( &amp;amp;) 与号（&amp;）(&amp;nbsp;) 空格 (&amp;times; )乘号×(&amp;divide;)...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/html%20css_css%E7%9A%84%E5%9D%91/" title="css的坑"><img class="post-bg" src="/blog_img/8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="css的坑"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/html%20css_css%E7%9A%84%E5%9D%91/" title="css的坑">css的坑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/html-css/">html css</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/html%20css_css%E5%A4%8D%E4%B9%A0/" title="css复习"><img class="post-bg" src="/blog_img/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="css复习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/html%20css_css%E5%A4%8D%E4%B9%A0/" title="css复习">css复习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/html-css/">html css</a></span></div><div class="content">作为css的复习手册1.选择器css选择器分为五类：  简单选择器  元素选择器 比如&lt;p&gt;对标签进行选择 id选择器 # 类选择器 . 通用选择器 * 分组选择器 a, p, span   组合器选择器  后代选择器 a p span 子选择器 div &gt; p这个选择器只会选中子代的p元素，不包含孙子元素等等，只是最近一层的 相邻兄弟选择器 div + p （div跟p在同一个父元素中，这个选择器会选择紧跟着div的p元素） 通用兄弟选择器 div ~ p 选择跟div同级的所有兄弟p元素   伪类选择器  锚伪类 a:hover, :visited, :active, :link 伪类 div:hover, :focus, :checked, :disabled, :enabled css伪类 :first-child 第一个子元素 :first-of-type :last-child，相对于父元素的第几个子元素还是同级 :nth-child(n)选择作为其父第n个元素（选同级） 比如 ul...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/html%20css_flex%E5%B8%83%E5%B1%80/" title="flex布局"><img class="post-bg" src="/blog_img/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="flex布局"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/html%20css_flex%E5%B8%83%E5%B1%80/" title="flex布局">flex布局</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/html-css/">html css</a></span></div><div class="content">5.27 flex布局 1.flex-direction：主轴的方向 row 默认左端 row-reverse 右端 column 变为垂直方向，起点为上沿 column-reverse 垂直方向，起点为下沿  reverse就是反转的意思 2.flex-wrap：一条轴线排不下，如何换行 nowrap 默认不换行，硬塞 wrap 换行，多的往下面排 wrap-reverse 换行，第一行在下面，多的往上面排  3.justify-content：在主轴上的对齐方式 flex-start 左对齐 flex-end 右对齐 center 居中 space-between 两端对齐，项目之间的间隔相等 space-around...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/js%E7%9F%A5%E8%AF%86%E7%82%B9_js%E9%9D%A2%E8%AF%95/" title="js面试"><img class="post-bg" src="/blog_img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js面试"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/js%E7%9F%A5%E8%AF%86%E7%82%B9_js%E9%9D%A2%E8%AF%95/" title="js面试">js面试</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/js%E7%9F%A5%E8%AF%86%E7%82%B9/">js知识点</a></span></div><div class="content">js知识点1.常见的值和引用类型值：  undefine 字符串 数值 bool symbol  引用：  对象 数组 null  2.深拷贝与浅拷贝对于一种问题，比如对象的引用 let obj1 &#x3D; obj2 obj1.name &#x3D; “aa” 那么，obj2的name也会因此改变，这就是浅拷贝 这两个对象实例都是指向的同一块内存空间，如果是深拷贝的话，就不会出现这种问题。深拷贝就相当于是把原对象通过递归的方式，将原对象原原本本的复制过去。这样，这个对象实例就变成了一个独立的个体，有着自己的内存空间。 12345678910111213141516171819202122232425function deepClone(obj=&#123;&#125;)&#123;  if(typeof obj !== &#x27;object&#x27; || obj == null)&#123;    // 如果传入的不是对象或者为空的话，那么就给他按原值返回    //因为后面需要递归进行调用，如果遇到值，就可以直接进行赋值   ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/js%E7%9F%A5%E8%AF%86%E7%82%B9_js%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95/" title="js高级语法"><img class="post-bg" src="/blog_img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js高级语法"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/js%E7%9F%A5%E8%AF%86%E7%82%B9_js%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95/" title="js高级语法">js高级语法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/js%E7%9F%A5%E8%AF%86%E7%82%B9/">js知识点</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/js%E7%9F%A5%E8%AF%86%E7%82%B9_%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%B8%BA%E5%AF%B9%E8%B1%A1/" title="函数参数为对象"><img class="post-bg" src="/blog_img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="函数参数为对象"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/js%E7%9F%A5%E8%AF%86%E7%82%B9_%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%B8%BA%E5%AF%B9%E8%B1%A1/" title="函数参数为对象">函数参数为对象</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/js%E7%9F%A5%E8%AF%86%E7%82%B9/">js知识点</a></span></div><div class="content">1.函数的参数为对象当一个函数的参数为对象的时候，需要准确的传入与对象内名称一致的参数字段例如 123456789function test(&#123;page=1,pagesize=10)&#123;  page*=1;  pagesize*=1;  const total = page*10+pagesize  console.log(total);  return total;&#125;test(&#123;page:0,num:2,pagesize:10&#125;)  这个测试的结果就是10，中间存在一个其他项num，但是不影响，这个函数会准确的找到同名的字段进行赋值，而且只会去找同名的，如果你缺少一个需要的字段，并且在函数定义的时候没有去给他一个初值，那么返回的结果就会是一个NaN。 </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/mp2%E4%BB%A3%E7%90%86%E8%BF%90%E8%A1%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BB%A3%E7%A0%81/" title="mp2代理运行服务端代码"><img class="post-bg" src="/blog_img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mp2代理运行服务端代码"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/mp2%E4%BB%A3%E7%90%86%E8%BF%90%E8%A1%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BB%A3%E7%A0%81/" title="mp2代理运行服务端代码">mp2代理运行服务端代码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE/">全栈项目</a></span></div><div class="content">修改代码后，需要将项目重启 我目前的操作是先将服务关闭，删除，然后重新启动 pm2 stop all	pm2 delete all	pm2 start .&#x2F;bin&#x2F;www </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">一叶凉夏</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Saberwode"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客，这里会分享一些工作和学习中想要记录的东西~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/20/work_%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="小技巧"><img src="/blog_img/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小技巧"/></a><div class="content"><a class="title" href="/2024/02/20/work_%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="小技巧">小技巧</a><time datetime="2024-02-20T01:46:42.000Z" title="发表于 2024-02-20 09:46:42">2024-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/28/work_%E9%80%9A%E7%94%A8%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="通用小工具"><img src="/blog_img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="通用小工具"/></a><div class="content"><a class="title" href="/2023/12/28/work_%E9%80%9A%E7%94%A8%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="通用小工具">通用小工具</a><time datetime="2023-12-28T07:52:24.000Z" title="发表于 2023-12-28 15:52:24">2023-12-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/18/work_%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E6%A0%91%E7%BB%93%E6%9E%84%E6%B8%B2%E6%9F%93%E5%8D%A1%E6%AD%BB/" title="大数据量树结构渲染卡死"><img src="/blog_img/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据量树结构渲染卡死"/></a><div class="content"><a class="title" href="/2023/12/18/work_%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E6%A0%91%E7%BB%93%E6%9E%84%E6%B8%B2%E6%9F%93%E5%8D%A1%E6%AD%BB/" title="大数据量树结构渲染卡死">大数据量树结构渲染卡死</a><time datetime="2023-12-18T09:01:53.000Z" title="发表于 2023-12-18 17:01:53">2023-12-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/18/work_%E4%B8%8A%E4%BC%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="上传详细设计"><img src="/blog_img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="上传详细设计"/></a><div class="content"><a class="title" href="/2023/12/18/work_%E4%B8%8A%E4%BC%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="上传详细设计">上传详细设计</a><time datetime="2023-12-18T08:46:42.000Z" title="发表于 2023-12-18 16:46:42">2023-12-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/11/work_%E6%B5%B7%E5%8D%97%E7%B3%BB%E7%BB%9F%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="海南系统详细设计"><img src="/blog_img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="海南系统详细设计"/></a><div class="content"><a class="title" href="/2023/12/11/work_%E6%B5%B7%E5%8D%97%E7%B3%BB%E7%BB%9F%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="海南系统详细设计">海南系统详细设计</a><time datetime="2023-12-11T02:30:19.000Z" title="发表于 2023-12-11 10:30:19">2023-12-11</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/TypeScript/"><span class="card-category-list-name">TypeScript</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/es6/"><span class="card-category-list-name">es6</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/html-css/"><span class="card-category-list-name">html css</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/js%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="card-category-list-name">js知识点</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/node/"><span class="card-category-list-name">node</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/problem/"><span class="card-category-list-name">problem</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="card-category-list-name">vue2知识点</span><span class="card-category-list-count">12</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/work/" style="font-size: 1.1em; color: #999">work</a> <a href="/tags/Hexo/" style="font-size: 1.5em; color: #99a9bf">Hexo</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/02/">
+            <span class="card-archive-list-date">
+              二月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/12/">
+            <span class="card-archive-list-date">
+              十二月 2023
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/08/">
+            <span class="card-archive-list-date">
+              八月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/06/">
+            <span class="card-archive-list-date">
+              六月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/05/">
+            <span class="card-archive-list-date">
+              五月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/04/">
+            <span class="card-archive-list-date">
+              四月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/03/">
+            <span class="card-archive-list-date">
+              三月 2023
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/01/">
+            <span class="card-archive-list-date">
+              一月 2023
+            </span>
+            <span class="card-archive-list-count">91</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">104</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-03-25T03:12:14.115Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["今日事&#44;今日毕","Never put off till tomorrow what you can do today"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["今日事&#44;今日毕","Never put off till tomorrow what you can do today"])
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

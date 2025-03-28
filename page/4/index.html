@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一叶凉夏 - 来了</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="一叶凉夏">
+<meta property="og:url" content="https://saberwode.github.io/page/4/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/img/cat.gif">
+<meta property="article:author" content="一叶凉夏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/img/cat.gif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一叶凉夏',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/luying.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">一叶凉夏</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/node_%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" title="内置模块"><img class="post-bg" src="/blog_img/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="内置模块"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/node_%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" title="内置模块">内置模块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/node/">node</a></span></div><div class="content">node内置模块1.path模块path模块可用于路径拼接 1234const path = require(&#x27;path&#x27;);const basePath = &#x27;ser/why&#x27;const fileName = &#x27;abc.txt&#x27;const filePath = path.resolve(basePath,fileNmae)  用的最多的就是path.resolve 关于路径拼接， 还有另一种方式 1const fileName  = path.join(basePath,fileName)  join，可以拼接三个或者多个路径，但是join并不会智能解析前面的’..&#x2F;‘ 而resolve可以智能解析前面的..&#x2F;将其解释为真实路径 获取路径信息 path.dirname(path)//表示文件路径 path.extname(path)//表示文件扩展名 path.basename(path)//表示文件名称 2.fs模块，文件读写12const info =...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/problem_game/" title="game"><img class="post-bg" src="/blog_img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="game"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/problem_game/" title="game">game</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/problem/">problem</a></span></div><div class="content">Tic Tac Toe项目总结1.v-for使用报错：Cannot use v-for on stateful component root element because it renders multiple elements. 不能在根元素（root element）使用 v-for，因为v-for是个循环体呈现多个元素，v-for在根元素上导致无法渲染。 &#x3D;&#x3D;使用v-for的时候需要在外层加上一个div不能让他处在根元素上&#x3D;&#x3D; 正确示例： 12345&lt;template id=&quot;block1&quot;&gt;        &lt;div class=&quot;body&quot;&gt;            &lt;div class=&quot;box1&quot; v-for=&quot;item in total_stats1&quot; @click=&quot;&quot;&gt;&#123;&#123;item.id&#125;&#125;&lt;/div&gt;       ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/problem_problem/" title="problem"><img class="post-bg" src="/blog_img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="problem"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/problem_problem/" title="problem">problem</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/problem/">problem</a></span></div><div class="content">这里是问题汇总1.关于组件化问题：报错内容: did you register the component correctly? For recursive components, make sure to provide the &quot;name&quot; option. 翻译过来是： 您是否正确注册了组件？对于递归组件，请确保提供“name”选项 出现问题的原因： 所渲染的Vue实例不能在组件前面，若在前面创建实例，则无法读取到后面创建的组件。 即new Vue()&#x3D;&#x3D;实例化Vue要放在后面&#x3D;&#x3D; 此时问题解决，同时网上还会有引起类似报错的操作：  如果全局注册,组件名称问题:   若是组件名称是大写,Vue会报错. 可以修改为下面两种:  修改组件名称为小写,即mycomponent即可解决.  如使用局部注册,则是components少写了个s:         2.注意string类型和number类型比较会出问题1234567891011for (let item of this.childstats) &#123;   ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/role/" title="role"><img class="post-bg" src="/blog_img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="role"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/role/" title="role">role</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE/">全栈项目</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_JavaScript/" title="JavaScript"><img class="post-bg" src="/blog_img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_JavaScript/" title="JavaScript">JavaScript</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="content">这里是JavaScript笔记1.作用域：内部函数访问外部函数的变量，采取的是链式查找的方式来决定取哪个值，这种结构我们称之为作用域链 它坚持一个“就近原则” 2.创建函数的两种方法：（1）：利用函数关键字自定义函数（命名函数）function fn(){} （2）：利用函数表达式声明（匿名函数）var fun &#x3D; fuction(){}两者创建方法不同，但是大体用法是相同的，函数表达式同样可以进行传递参数 3.调用对象属性的两种方法：（1）：Obj.name （2）：Obj[‘name’] 4.构造函数首字母要大写5.DOM：element ：元素！！一定要记住页面中所有标签都是元素。文档：一个页面就是一个文档，DOM用document表示。网页中所有内容都是节点（标签，属性，文本，注释等），DOM中使用node表示DOM把以上内容都看做是对象 6.获取元素：（1）通过id：document.getElementById();&#x2F;&#x2F;返回的是一个元素对象var timer &#x3D;...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/" title="Vue-CLI目录构成"><img class="post-bg" src="/blog_img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue-CLI目录构成"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/" title="Vue-CLI目录构成">Vue-CLI目录构成</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="content">5.221.Vue CLI目录：   hello						&#x2F;&#x2F;项目名 ​	-build					&#x2F;&#x2F;用来使用webpack打包build依赖 ​	-config					&#x2F;&#x2F;用来做整个项目配置目录 ​	-node_modules	&#x2F;&#x2F;用来管理项目中使用的依赖 ​	-src							&#x2F;&#x2F;用来书写vue的源代码【重点】 ​		-assets					&#x2F;&#x2F;用来存放静态资源【重点】 ​		-components		&#x2F;&#x2F;用来书写vue组件【重点】 ​		-router					&#x2F;&#x2F;用于配置项目中的路由【重点】 ​		-App.vue				&#x2F;&#x2F;项目中的根组件【重点】 ​		-main.js					&#x2F;&#x2F;项目中的主入口【重点】 2.在main.js中，开头import Vue from...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_VueX/" title="VueX"><img class="post-bg" src="/blog_img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VueX"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_VueX/" title="VueX">VueX</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="content">vueX1.vueX的使用流程： 简单的使用公共资源  首先在vueX的 store文件夹中，找到 index.js文件，在里面的state中设置公共存储的值比如name  在其他组件中就可以使用this.$store.state.name来对name进行使用  修改公共资源  在其他组件中，需要用this.$store.patch(&#39;change&#39;)派发一个action  在index.js中，改写actions()方法提交一个commit，去触发mutations，提交一个变化  然后在mutations()方法中对state()方法内容去改写    注意：mutations中，只允许写同步代码，异步代码需要放到action中去写  直接上项目代码： 有一个store文件夹，用于设置vuex，入口文件为index.js 1234567891011121314151617181920/** * vuex状态管理入口 */import storage from &#x27;../utils/storage&#x27;;import mutations from...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_axios/" title="axios"><img class="post-bg" src="/blog_img/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="axios"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_axios/" title="axios">axios</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="content">axios1.当需要接受多个网络请求的时候123456789101112axios.all([axios(&#123;	url:&#x27;..&#x27;&#125;),axios(&#123;	url:&quot;..&quot;,	params:&#123;		type:&quot;sell&quot;,		page:5	&#125;&#125;)]).then(axios.spread((res1,res2)=&gt;&#123;	console.log(res1);	console.log(res2);&#125;))  其中axios.spread()是可以将两个请求的返回值作为参数传入，而不需要使用数组的形式 2.设置默认全局配置12axios.defaults.baseURL = &quot;http:123.207.32.32:8000&quot;axios.defaults.timeout = 5000    3.创建axios实例1234const instance =...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_es6%E8%AF%AD%E6%B3%95/" title="es6语法"><img class="post-bg" src="/blog_img/8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="es6语法"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_es6%E8%AF%AD%E6%B3%95/" title="es6语法">es6语法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="content">ES61.闭包与立即执行函数：具体例子可见：https://zhuanlan.zhihu.com/p/22465092 123456789var btns - document.getElementsByTagName(&#x27;button&#x27;);for(var i = 0; i &lt;btns.length; i++)&#123;	(function (num)&#123;		btns[num].addEventListener(&#x27;click&#x27;,function()&#123;		console.log(&#x27;第&#x27;+num +&#x27;个按钮被点击&#x27;);		&#125;)	&#125;)(i)	//其中(function()&#123;&#125;)()被称为立即执行函数&#125;  那么用上箭头函数的话，上述的箭头函数应该可以改为： ((num)&#x3D;&gt;{…})(i) 那么这个例子就可以改为： 123456789var btns -...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_git%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="git的使用与生命周期"><img class="post-bg" src="/blog_img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git的使用与生命周期"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_git%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="git的使用与生命周期">git的使用与生命周期</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="content">5.171.编程范式：vue使用的是声明式编程，你不需要知道他需要显示什么东西就可以了，并不需要自己写如何实现 而之前的js，jQuery使用的是命令式编程，你需要一步步的将执行步骤写好，他才能正常运行。 2.git brush切换路径：cd /d/Git_Repositor 接着就是初始化仓库： git init 3.git仓库使用： 初始化一个仓库，使用git init命令  添加文件到git仓库中：  使用命令 git add，可以反复多次使用，添加多个文件； 使用命令git commit -m &quot;&quot;  掌握工作区的状态  git status 该指令可以看出你当前的工作区是否有修改后的文件，和有没有修改。  git diff 如果git status告诉你有文件被修改过，该指令可以查看修改的内容。   回退前进版本  HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使⽤用命 令git reset --hard commit_id。 可以用git log查看提交历史，确定回退到哪个版本 用git...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">一叶凉夏</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Saberwode"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客，这里会分享一些工作和学习中想要记录的东西~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/20/work_%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="小技巧"><img src="/blog_img/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小技巧"/></a><div class="content"><a class="title" href="/2024/02/20/work_%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="小技巧">小技巧</a><time datetime="2024-02-20T01:46:42.000Z" title="发表于 2024-02-20 09:46:42">2024-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/28/work_%E9%80%9A%E7%94%A8%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="通用小工具"><img src="/blog_img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="通用小工具"/></a><div class="content"><a class="title" href="/2023/12/28/work_%E9%80%9A%E7%94%A8%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="通用小工具">通用小工具</a><time datetime="2023-12-28T07:52:24.000Z" title="发表于 2023-12-28 15:52:24">2023-12-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/18/work_%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E6%A0%91%E7%BB%93%E6%9E%84%E6%B8%B2%E6%9F%93%E5%8D%A1%E6%AD%BB/" title="大数据量树结构渲染卡死"><img src="/blog_img/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据量树结构渲染卡死"/></a><div class="content"><a class="title" href="/2023/12/18/work_%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E6%A0%91%E7%BB%93%E6%9E%84%E6%B8%B2%E6%9F%93%E5%8D%A1%E6%AD%BB/" title="大数据量树结构渲染卡死">大数据量树结构渲染卡死</a><time datetime="2023-12-18T09:01:53.000Z" title="发表于 2023-12-18 17:01:53">2023-12-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/18/work_%E4%B8%8A%E4%BC%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="上传详细设计"><img src="/blog_img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="上传详细设计"/></a><div class="content"><a class="title" href="/2023/12/18/work_%E4%B8%8A%E4%BC%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="上传详细设计">上传详细设计</a><time datetime="2023-12-18T08:46:42.000Z" title="发表于 2023-12-18 16:46:42">2023-12-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/11/work_%E6%B5%B7%E5%8D%97%E7%B3%BB%E7%BB%9F%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="海南系统详细设计"><img src="/blog_img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="海南系统详细设计"/></a><div class="content"><a class="title" href="/2023/12/11/work_%E6%B5%B7%E5%8D%97%E7%B3%BB%E7%BB%9F%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="海南系统详细设计">海南系统详细设计</a><time datetime="2023-12-11T02:30:19.000Z" title="发表于 2023-12-11 10:30:19">2023-12-11</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/TypeScript/"><span class="card-category-list-name">TypeScript</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/es6/"><span class="card-category-list-name">es6</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/html-css/"><span class="card-category-list-name">html css</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/js%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="card-category-list-name">js知识点</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/node/"><span class="card-category-list-name">node</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/problem/"><span class="card-category-list-name">problem</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="card-category-list-name">vue2知识点</span><span class="card-category-list-count">12</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/work/" style="font-size: 1.1em; color: #999">work</a> <a href="/tags/Hexo/" style="font-size: 1.5em; color: #99a9bf">Hexo</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/02/">
+            <span class="card-archive-list-date">
+              二月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/12/">
+            <span class="card-archive-list-date">
+              十二月 2023
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/08/">
+            <span class="card-archive-list-date">
+              八月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/06/">
+            <span class="card-archive-list-date">
+              六月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/05/">
+            <span class="card-archive-list-date">
+              五月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/04/">
+            <span class="card-archive-list-date">
+              四月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/03/">
+            <span class="card-archive-list-date">
+              三月 2023
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/01/">
+            <span class="card-archive-list-date">
+              一月 2023
+            </span>
+            <span class="card-archive-list-count">91</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">104</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-03-25T03:12:14.115Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["今日事&#44;今日毕","Never put off till tomorrow what you can do today"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["今日事&#44;今日毕","Never put off till tomorrow what you can do today"])
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

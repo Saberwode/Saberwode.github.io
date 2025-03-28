@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Vue-CLI目录构成 | 一叶凉夏</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="5.221.Vue CLI目录：   hello						&#x2F;&#x2F;项目名 ​	-build					&#x2F;&#x2F;用来使用webpack打包build依赖 ​	-config					&#x2F;&#x2F;用来做整个项目配置目录 ​	-node_modules	&#x2F;&#x2F;用来管理项目中使用的依赖 ​	-src							&#x2F;&#x2F;用来书写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-CLI目录构成">
+<meta property="og:url" content="https://saberwode.github.io/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:description" content="5.221.Vue CLI目录：   hello						&#x2F;&#x2F;项目名 ​	-build					&#x2F;&#x2F;用来使用webpack打包build依赖 ​	-config					&#x2F;&#x2F;用来做整个项目配置目录 ​	-node_modules	&#x2F;&#x2F;用来管理项目中使用的依赖 ​	-src							&#x2F;&#x2F;用来书写">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/blog_img/9.jpg">
+<meta property="article:published_time" content="2023-01-03T06:33:56.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:38:21.023Z">
+<meta property="article:author" content="一叶凉夏">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/blog_img/9.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Vue-CLI目录构成",
+  "url": "https://saberwode.github.io/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/",
+  "image": "https://saberwode.github.io/blog_img/9.jpg",
+  "datePublished": "2023-01-03T06:33:56.000Z",
+  "dateModified": "2025-03-18T04:38:21.023Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "一叶凉夏",
+      "url": "https://saberwode.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vue-CLI目录构成',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog_img/9.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a><a class="nav-page-title" href="/"><span class="site-name">Vue-CLI目录构成</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Vue-CLI目录构成</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-18T04:38:21.023Z" title="更新于 2025-03-18 12:38:21">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue2%E7%9F%A5%E8%AF%86%E7%82%B9/">vue2知识点</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="5-22"><a href="#5-22" class="headerlink" title="5.22"></a>5.22</h2><h4 id="1-Vue-CLI目录："><a href="#1-Vue-CLI目录：" class="headerlink" title="1.Vue CLI目录："></a>1.Vue CLI目录：</h4><img src="../../img/image-20210522211919075.png" alt="image-20210522211919075" style="zoom:67%;" />
+
+<p><img src="/../../img/image-20210522213941356.png" alt="image-20210522213941356"></p>
+<p>hello						&#x2F;&#x2F;项目名</p>
+<p>​	-build					&#x2F;&#x2F;用来使用webpack打包build依赖</p>
+<p>​	-config					&#x2F;&#x2F;用来做整个项目配置目录</p>
+<p>​	-node_modules	&#x2F;&#x2F;用来管理项目中使用的依赖</p>
+<p>​	-src							&#x2F;&#x2F;用来书写vue的源代码【重点】</p>
+<p>​		-assets					&#x2F;&#x2F;用来存放静态资源【重点】</p>
+<p>​		-components		&#x2F;&#x2F;用来书写vue组件【重点】</p>
+<p>​		-router					&#x2F;&#x2F;用于配置项目中的路由【重点】</p>
+<p>​		-App.vue				&#x2F;&#x2F;项目中的根组件【重点】</p>
+<p>​		-main.js					&#x2F;&#x2F;项目中的主入口【重点】</p>
+<h4 id="2-在main-js中，开头"><a href="#2-在main-js中，开头" class="headerlink" title="2.在main.js中，开头"></a>2.在main.js中，开头</h4><p><code>import Vue from &#39;Vue&#39;</code>	&#x2F;&#x2F;从node_modules中引入vue.js文件，应该就是以前不用脚手架的时候<code>&lt;script scr=&#39;vue.js&#39;&gt;</code>中的内容是一样的效果。</p>
+<p><code>import App from &#39;./App&#39;</code> &#x2F;&#x2F;引入自定义的组件，就是那个App.vue 十分显眼</p>
+<p><code>import router from &#39;./router&#39;</code> &#x2F;&#x2F;引入路由</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saberwode.github.io">一叶凉夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saberwode.github.io/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/">https://saberwode.github.io/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_Vue-CLI%E7%9B%AE%E5%BD%95%E6%9E%84%E6%88%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saberwode.github.io" target="_blank">一叶凉夏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post-share"><div class="social-share" data-image="/blog_img/9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_JavaScript/" title="JavaScript"><img class="cover" src="/blog_img/5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">JavaScript</div></div><div class="info-2"><div class="info-item-1">这里是JavaScript笔记1.作用域：内部函数访问外部函数的变量，采取的是链式查找的方式来决定取哪个值，这种结构我们称之为作用域链 它坚持一个“就近原则” 2.创建函数的两种方法：（1）：利用函数关键字自定义函数（命名函数）function fn(){} （2）：利用函数表达式声明（匿名函数）var fun &#x3D; fuction(){}两者创建方法不同，但是大体用法是相同的，函数表达式同样可以进行传递参数 3.调用对象属性的两种方法：（1）：Obj.name （2）：Obj[‘name’] 4.构造函数首字母要大写5.DOM：element ：元素！！一定要记住页面中所有标签都是元素。文档：一个页面就是一个文档，DOM用document表示。网页中所有内容都是节点（标签，属性，文本，注释等），DOM中使用node表示DOM把以上内容都看做是对象 6.获取元素：（1）通过id：document.getElementById();&#x2F;&#x2F;返回的是一个元素对象var timer &#x3D;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/vue2%E7%9F%A5%E8%AF%86%E7%82%B9_VueX/" title="VueX"><img class="cover" src="/blog_img/2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">VueX</div></div><div class="info-2"><div class="info-item-1">vueX1.vueX的使用流程： 简单的使用公共资源  首先在vueX的 store文件夹中，找到 index.js文件，在里面的state中设置公共存储的值比如name  在其他组件中就可以使用this.$store.state.name来对name进行使用  修改公共资源  在其他组件中，需要用this.$store.patch(&#39;change&#39;)派发一个action  在index.js中，改写actions()方法提交一个commit，去触发mutations，提交一个变化  然后在mutations()方法中对state()方法内容去改写    注意：mutations中，只允许写同步代码，异步代码需要放到action中去写  直接上项目代码： 有一个store文件夹，用于设置vuex，入口文件为index.js 1234567891011121314151617181920/** * vuex状态管理入口 */import storage from &#x27;../utils/storage&#x27;;import mutations from...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/01/03/TypeScript_TypeScript/" title="TypeScript"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">TypeScript</div></div><div class="info-2"><div class="info-item-1">TypeScript学习1.never类型never类型主要应用于以下场景 比方说有一个函数 123456789101112function handleMessage(message: string | number)&#123;  switch (typeof message)&#123;    case &#x27;string&#x27;:      console.log(&#x27;string处理message&#x27;);      break;    case &#x27;number&#x27;:      console.log(&#x27;number处理message&#x27;);      break;    //default:    //  const check: never = message  &#125;&#125;  此时函数支持的参数有string和number类型的，如果有一个人想去传一个boolean类型的参数，首先肯定是会报错的，但是如果修改了hadleMessage函数的话，比如在参数中添加|...</div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E8%A7%86%E9%A2%91%E8%BF%9B%E5%BA%A6/" title="视频进度"><img class="cover" src="/blog_img/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">视频进度</div></div><div class="info-2"><div class="info-item-1">视频进度实战11    					看完了 js高级						1：34 </div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" title="遇到的坑"><img class="cover" src="/blog_img/1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">遇到的坑</div></div><div class="info-2"><div class="info-item-1">坑1.当使用prettier进行对代码进行规范限制的时候，使用editorconfig和prettier中vscode的插件都正常启用时候，发现对ts代码的格式化不起作用 方法：按ctrl+shift+t打开settting.json加入&quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;, 就可以了 </div></div></div></a><a class="pagination-related" href="/2023/01/03/api/" title="api"><img class="cover" src="/blog_img/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">api</div></div><div class="info-2"><div class="info-item-1">1https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api  老师的api </div></div></div></a><a class="pagination-related" href="/2023/01/03/es6_%E8%A7%A3%E6%9E%84/" title="解构"><img class="cover" src="/blog_img/7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">解构</div></div><div class="info-2"><div class="info-item-1">1....解构先上个例子： 首先有一个数组：stack 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27; &#125; ]  然后想将另一个数组给加进来:req.body.content 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/git%20clone%E9%97%AE%E9%A2%98/" title="git clone问题"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">git clone问题</div></div><div class="info-2"><div class="info-item-1">报错error: RPC failed; result&#x3D;35, HTTP code &#x3D; 0fatal: The remote end hung up unexpectedly a: 1,2,3 b:1,2 c:,1 a:1,2 b:1 c:压入栈 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-22"><span class="toc-number">1.</span> <span class="toc-text">5.22</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Vue-CLI%E7%9B%AE%E5%BD%95%EF%BC%9A"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.Vue CLI目录：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9C%A8main-js%E4%B8%AD%EF%BC%8C%E5%BC%80%E5%A4%B4"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.在main.js中，开头</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

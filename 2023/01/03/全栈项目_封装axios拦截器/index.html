@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>封装axios拦截器 | 一叶凉夏</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="封装axios拦截器创建service文件夹，创建入口文件index.ts 123456789101112131415161718192021222324252627282930&#x2F;&#x2F; service统一出口import XRequest from &#x27;.&#x2F;request&#x27;import &#123; BASE_URL, TIME_OUT &#125; from &#x27;.&#x2F;re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装axios拦截器">
+<meta property="og:url" content="https://saberwode.github.io/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E5%B0%81%E8%A3%85axios%E6%8B%A6%E6%88%AA%E5%99%A8/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:description" content="封装axios拦截器创建service文件夹，创建入口文件index.ts 123456789101112131415161718192021222324252627282930&#x2F;&#x2F; service统一出口import XRequest from &#x27;.&#x2F;request&#x27;import &#123; BASE_URL, TIME_OUT &#125; from &#x27;.&#x2F;re">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/blog_img/5.jpg">
+<meta property="article:published_time" content="2023-01-03T06:33:56.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:38:21.026Z">
+<meta property="article:author" content="一叶凉夏">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/blog_img/5.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "封装axios拦截器",
+  "url": "https://saberwode.github.io/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E5%B0%81%E8%A3%85axios%E6%8B%A6%E6%88%AA%E5%99%A8/",
+  "image": "https://saberwode.github.io/blog_img/5.jpg",
+  "datePublished": "2023-01-03T06:33:56.000Z",
+  "dateModified": "2025-03-18T04:38:21.026Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "一叶凉夏",
+      "url": "https://saberwode.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E5%B0%81%E8%A3%85axios%E6%8B%A6%E6%88%AA%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '封装axios拦截器',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog_img/5.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a><a class="nav-page-title" href="/"><span class="site-name">封装axios拦截器</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">封装axios拦截器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-18T04:38:21.026Z" title="更新于 2025-03-18 12:38:21">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE/">全栈项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="封装axios拦截器"><a href="#封装axios拦截器" class="headerlink" title="封装axios拦截器"></a>封装axios拦截器</h2><p>创建<code>service</code>文件夹，创建入口文件<code>index.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// service统一出口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">XRequest</span> <span class="keyword">from</span> <span class="string">&#x27;./request&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">BASE_URL</span>, <span class="variable constant_">TIME_OUT</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./request/config&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> xRequest = <span class="keyword">new</span> <span class="title class_">XRequest</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="variable constant_">BASE_URL</span>,</span><br><span class="line">  <span class="attr">timeout</span>: <span class="variable constant_">TIME_OUT</span>,</span><br><span class="line">  <span class="attr">interceptors</span>: &#123;</span><br><span class="line">    <span class="attr">requestInterceptor</span>: <span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求成功拦截&#x27;</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> config</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">requestInterceptorCatch</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求失败拦截&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> err</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">responseInterceptor</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应成功拦截&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> res</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">responseInterceptorCatch</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应失败拦截&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> err</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> xRequest</span><br></pre></td></tr></table></figure>
+
+<p>创建<code>request</code>文件夹，创建入口文件<code>index.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">AxiosInstance</span>, <span class="title class_">AxiosRequestConfig</span>, <span class="title class_">AxiosResponse</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">XRequestInterceptors</span> &#123;</span><br><span class="line">  <span class="attr">requestInterceptor</span>?: <span class="function">(<span class="params"><span class="attr">config</span>: <span class="title class_">AxiosRequestConfig</span></span>) =&gt;</span> <span class="title class_">AxiosRequestConfig</span></span><br><span class="line">  <span class="attr">requestInterceptorCatch</span>?: <span class="function">(<span class="params"><span class="attr">error</span>: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">any</span></span><br><span class="line">  <span class="attr">responseInterceptor</span>?: <span class="function">(<span class="params"><span class="attr">res</span>: <span class="title class_">AxiosResponse</span></span>) =&gt;</span> <span class="title class_">AxiosResponse</span></span><br><span class="line">  <span class="attr">responseInterceptorCatch</span>?: <span class="function">(<span class="params"><span class="attr">error</span>: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">any</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 希望在xRequest实例中传入的config可以传入拦截器</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">XRequestConfig</span> <span class="keyword">extends</span> <span class="title class_">AxiosRequestConfig</span> &#123;</span><br><span class="line">  <span class="attr">interceptors</span>?: <span class="title class_">XRequestInterceptors</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">XRequest</span> &#123;</span><br><span class="line">  <span class="comment">// 创建一个axios实例</span></span><br><span class="line">  <span class="attr">instance</span>: <span class="title class_">AxiosInstance</span></span><br><span class="line">  <span class="attr">interceptors</span>?: <span class="title class_">XRequestInterceptors</span></span><br><span class="line">  <span class="comment">// 自定义的接口类型，除了AxiosRequestConfig，还有额外的可选拦截器属性</span></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="attr">config</span>: <span class="title class_">XRequestConfig</span></span>) &#123;</span><br><span class="line">    <span class="comment">// 在创建xRequest实例的时候，传入config，之后赋值给该实例的instacne</span></span><br><span class="line">    <span class="comment">// 这样就可以保证每个xRequest实例保持独立，当BASE_URL不同的时候，每个xRequest实例发送请求时互不干扰</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">instance</span> = axios.<span class="title function_">create</span>(config)</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">interceptors</span> = config.<span class="property">interceptors</span></span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">instance</span>.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">interceptors</span>?.<span class="property">requestInterceptor</span>,</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">interceptors</span>?.<span class="property">requestInterceptorCatch</span></span><br><span class="line">    )</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">instance</span>.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">interceptors</span>?.<span class="property">responseInterceptor</span>,</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">interceptors</span>?.<span class="property">responseInterceptorCatch</span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">request</span>(<span class="attr">config</span>: <span class="title class_">AxiosRequestConfig</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="comment">// 这里的instance就相当于一个axios实例，他有axios实例可以拥有的所有方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">instance</span>.<span class="title function_">request</span>(config).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">XRequest</span></span><br></pre></td></tr></table></figure>
+
+<p>可选，在<code>/request</code>创建<code>config.ts</code>文件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable constant_">BASE_URL</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">TIME_OUT</span> = <span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable constant_">BASE_URL</span> =</span><br><span class="line">    <span class="string">&#x27;https://backup.fastmock.site/mock/3e6d55f607e287c78c97f316f7dd6ff8/api&#x27;</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable constant_">BASE_URL</span> = <span class="string">&#x27;http://152.136.185.210:5000&#x27;</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;test&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable constant_">BASE_URL</span> = <span class="string">&#x27;eawefa&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; <span class="variable constant_">BASE_URL</span>, <span class="variable constant_">TIME_OUT</span> &#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saberwode.github.io">一叶凉夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saberwode.github.io/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E5%B0%81%E8%A3%85axios%E6%8B%A6%E6%88%AA%E5%99%A8/">https://saberwode.github.io/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E5%B0%81%E8%A3%85axios%E6%8B%A6%E6%88%AA%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saberwode.github.io" target="_blank">一叶凉夏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post-share"><div class="social-share" data-image="/blog_img/5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E5%90%84%E7%A7%8D%E6%8A%A5%E9%94%99/" title="各种报错"><img class="cover" src="/blog_img/9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">各种报错</div></div><div class="info-2"><div class="info-item-1">各种报错汇总1.Invalid shorthand property initializer速记属性初始值设定项无效 原因： 1234&#123;          label:&quot;最后登录时间&quot;,          prop = &quot;lastLoginTime&quot;&#125;  很明显，在对象中使用了=将其改为: 123456789101112131415161718192021&quot;list&quot;:[	&#123;        &quot;state&quot; : 1,        &quot;role&quot; :&quot;o&quot;,        &quot;roleList&quot; :[        &quot;60180b07b1eaed6c45fbebdb&quot;,        &quot;60150cb764de99631b2c3cd3&quot;,        &quot;60180b59b1eaed6c45fbebdc&quot;],       ...</div></div></div></a><a class="pagination-related" href="/2023/01/03/%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AE_%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E5%AF%86%E9%97%AE%E9%A2%98/" title="浏览器加密问题"><img class="cover" src="/blog_img/1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">浏览器加密问题</div></div><div class="info-2"><div class="info-item-1">1.浏览器加密问题浏览器在传输过程中，为了数据安全，会对数据进行加密，在传输结束后，传回客户端时会进行解密，然后客户端就会看到正常的数据 比如输入的内容是汉字系统管理通过控制台看到的发出的请求内容就是%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86 </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/01/03/TypeScript_TypeScript/" title="TypeScript"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">TypeScript</div></div><div class="info-2"><div class="info-item-1">TypeScript学习1.never类型never类型主要应用于以下场景 比方说有一个函数 123456789101112function handleMessage(message: string | number)&#123;  switch (typeof message)&#123;    case &#x27;string&#x27;:      console.log(&#x27;string处理message&#x27;);      break;    case &#x27;number&#x27;:      console.log(&#x27;number处理message&#x27;);      break;    //default:    //  const check: never = message  &#125;&#125;  此时函数支持的参数有string和number类型的，如果有一个人想去传一个boolean类型的参数，首先肯定是会报错的，但是如果修改了hadleMessage函数的话，比如在参数中添加|...</div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E8%A7%86%E9%A2%91%E8%BF%9B%E5%BA%A6/" title="视频进度"><img class="cover" src="/blog_img/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">视频进度</div></div><div class="info-2"><div class="info-item-1">视频进度实战11    					看完了 js高级						1：34 </div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" title="遇到的坑"><img class="cover" src="/blog_img/1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">遇到的坑</div></div><div class="info-2"><div class="info-item-1">坑1.当使用prettier进行对代码进行规范限制的时候，使用editorconfig和prettier中vscode的插件都正常启用时候，发现对ts代码的格式化不起作用 方法：按ctrl+shift+t打开settting.json加入&quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;, 就可以了 </div></div></div></a><a class="pagination-related" href="/2023/01/03/api/" title="api"><img class="cover" src="/blog_img/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">api</div></div><div class="info-2"><div class="info-item-1">1https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api  老师的api </div></div></div></a><a class="pagination-related" href="/2023/01/03/es6_%E8%A7%A3%E6%9E%84/" title="解构"><img class="cover" src="/blog_img/7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">解构</div></div><div class="info-2"><div class="info-item-1">1....解构先上个例子： 首先有一个数组：stack 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27; &#125; ]  然后想将另一个数组给加进来:req.body.content 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/git%20clone%E9%97%AE%E9%A2%98/" title="git clone问题"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">git clone问题</div></div><div class="info-2"><div class="info-item-1">报错error: RPC failed; result&#x3D;35, HTTP code &#x3D; 0fatal: The remote end hung up unexpectedly a: 1,2,3 b:1,2 c:,1 a:1,2 b:1 c:压入栈 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85axios%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">封装axios拦截器</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

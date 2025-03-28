@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>组件详细设计 | 一叶凉夏</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="通用列表组件、滚动加载分页组件详细设计 通用列表组件 需求背景封装原因 1.项目中很多地方都有用到列表展示，并且列表项的布局相似 2.列表项布局基本分为左中右三部分，按顺序分别为 左部：图片区、标志区；中部：内容区；右部：进入符号区 需求分析  可控制列表的内外边距，边框，以及边框圆角 可控制图片的位置（左对齐、右对齐）、是否显示、宽度、高度、图片的边框圆角、图片地址、图片容器高度、图片竖直方向的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组件详细设计">
+<meta property="og:url" content="https://saberwode.github.io/2023/01/03/work_%E7%BB%84%E4%BB%B6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:description" content="通用列表组件、滚动加载分页组件详细设计 通用列表组件 需求背景封装原因 1.项目中很多地方都有用到列表展示，并且列表项的布局相似 2.列表项布局基本分为左中右三部分，按顺序分别为 左部：图片区、标志区；中部：内容区；右部：进入符号区 需求分析  可控制列表的内外边距，边框，以及边框圆角 可控制图片的位置（左对齐、右对齐）、是否显示、宽度、高度、图片的边框圆角、图片地址、图片容器高度、图片竖直方向的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/blog_img/4.jpg">
+<meta property="article:published_time" content="2023-01-03T06:33:56.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:38:21.025Z">
+<meta property="article:author" content="一叶凉夏">
+<meta property="article:tag" content="work">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/blog_img/4.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "组件详细设计",
+  "url": "https://saberwode.github.io/2023/01/03/work_%E7%BB%84%E4%BB%B6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/",
+  "image": "https://saberwode.github.io/blog_img/4.jpg",
+  "datePublished": "2023-01-03T06:33:56.000Z",
+  "dateModified": "2025-03-18T04:38:21.025Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "一叶凉夏",
+      "url": "https://saberwode.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/2023/01/03/work_%E7%BB%84%E4%BB%B6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '组件详细设计',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog_img/4.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a><a class="nav-page-title" href="/"><span class="site-name">组件详细设计</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">组件详细设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-18T04:38:21.025Z" title="更新于 2025-03-18 12:38:21">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/work/">work</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="通用列表组件、滚动加载分页组件详细设计"><a href="#通用列表组件、滚动加载分页组件详细设计" class="headerlink" title="通用列表组件、滚动加载分页组件详细设计"></a>通用列表组件、滚动加载分页组件详细设计</h2><blockquote>
+<h3 id="通用列表组件"><a href="#通用列表组件" class="headerlink" title="通用列表组件"></a>通用列表组件</h3></blockquote>
+<h3 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h3><p><em>封装原因</em></p>
+<p>1.项目中很多地方都有用到列表展示，并且列表项的布局相似</p>
+<p>2.列表项布局基本分为左中右三部分，按顺序分别为 左部：图片区、标志区；中部：内容区；右部：进入符号区</p>
+<p><em>需求分析</em></p>
+<ol>
+<li>可控制列表的内外边距，边框，以及边框圆角</li>
+<li>可控制图片的位置（左对齐、右对齐）、是否显示、宽度、高度、图片的边框圆角、图片地址、图片容器高度、图片竖直方向的位置（贴近顶部、居中）</li>
+<li>可控制 进入图表、状态标志的显示；左部图片区中，状态标志的位置（距离顶部、左部的距离）</li>
+</ol>
+<h3 id="最终实现效果展示"><a href="#最终实现效果展示" class="headerlink" title="最终实现效果展示"></a>最终实现效果展示</h3><p><img src="/../img/image-20221202100024997.png" alt="image-20221202100024997"></p>
+<h3 id="1-0-整体设计框架"><a href="#1-0-整体设计框架" class="headerlink" title="1.0 整体设计框架"></a>1.0 整体设计框架</h3><p>本小节将介绍通用列表组件的设计思路和整体架构</p>
+<h4 id="1-0-1-列表组件外部交互流程"><a href="#1-0-1-列表组件外部交互流程" class="headerlink" title="1.0.1 列表组件外部交互流程"></a>1.0.1 列表组件外部交互流程</h4><p><img src="/../img/image-20221202100924595.png" alt="image-20221202100924595"></p>
+<ul>
+<li>外部调用组件，传入相应配置，调整列表的样式，以及需要渲染的数据（图片地址、内容标题等）</li>
+<li>传入配置后 组件显示对应的样式</li>
+</ul>
+<h3 id="1-1-内部组件具体设计"><a href="#1-1-内部组件具体设计" class="headerlink" title="1.1 内部组件具体设计"></a>1.1 内部组件具体设计</h3><h4 id="1-1-1-供外部传入的配置"><a href="#1-1-1-供外部传入的配置" class="headerlink" title="1.1.1 供外部传入的配置"></a>1.1.1 供外部传入的配置</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Props</span> &#123;</span><br><span class="line">  listMargin?: string; <span class="comment">// 列表外边距</span></span><br><span class="line">  listPadding?: string; <span class="comment">// 列表内边距</span></span><br><span class="line">  listBorder?: string; <span class="comment">// 列表边框</span></span><br><span class="line">  listBorderRadius?: string; <span class="comment">// 列表border-radius</span></span><br><span class="line">  imgPosition?: string; <span class="comment">// 图片位置 &quot;left&quot; or &quot;right&quot;</span></span><br><span class="line">  isShowImg?: boolean; <span class="comment">//是否显示图片</span></span><br><span class="line">  imgWidth?: string; <span class="comment">// 图片宽度</span></span><br><span class="line">  imgHeight?: string; <span class="comment">// 图片高度</span></span><br><span class="line">  imgContainerHeight?: string; <span class="comment">// 图片容器高度</span></span><br><span class="line">  imgBorderRadius?: string; <span class="comment">// 图片border-radius</span></span><br><span class="line">  imgSrc?: string; <span class="comment">// 图片地址</span></span><br><span class="line">  imgCenter?: boolean; <span class="comment">// 图片居中</span></span><br><span class="line">  isShowArrow?: boolean; <span class="comment">// 显示箭头</span></span><br><span class="line">  isShowBadge?: boolean; <span class="comment">// 显示左上角badge</span></span><br><span class="line">  badgeTop?: string; <span class="comment">// 状态距离顶部的位置</span></span><br><span class="line">  badgeLeft?: string; <span class="comment">// 状态距离左边的位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-2-组件提供的插槽"><a href="#1-1-2-组件提供的插槽" class="headerlink" title="1.1.2 组件提供的插槽"></a>1.1.2 组件提供的插槽</h4><ul>
+<li>图片内部标志 badge</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 图片内部badge开始 --&gt;</span><br><span class="line">&lt;div</span><br><span class="line">	class=&quot;badge&quot;</span><br><span class="line">	v-if=&quot;props.isShowBadge&quot;</span><br><span class="line">	:style=&quot;&#123; top: props.badgeTop, left: props.badgeLeft &#125;&quot;</span><br><span class="line">	&gt;</span><br><span class="line">	&lt;slot name=&quot;badge&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- 图片内部badge结束 --&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>中部主要内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 组件主要内容开始 --&gt;</span><br><span class="line">&lt;div class=&quot;main&quot;&gt;</span><br><span class="line">	&lt;slot name=&quot;main&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- 组件主要内容结束 --&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><p>本小节将介绍如何在项目中使用 列表组件</p>
+<p><em>引入</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Listing</span><br><span class="line">      :img-src=&quot;props.course.courseCover&quot;</span><br><span class="line">      img-width=&quot;119px&quot;</span><br><span class="line">      img-height=&quot;77px&quot;</span><br><span class="line">      is-show-arrow</span><br><span class="line">      is-show-badge</span><br><span class="line">      badge-left=&quot;-4px&quot;</span><br><span class="line">      class=&quot;list-item&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &lt;template #main&gt;</span><br><span class="line">        &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">          &lt;h4&gt;&#123;&#123; course.courseName &#125;&#125;&lt;/h4&gt;</span><br><span class="line">          &lt;p&gt;&#123;&#123; course.validityEndTime &#125;&#125;&lt;/p&gt;</span><br><span class="line">          &lt;div class=&quot;tags&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; course.studyMethod &#125;&#125;&lt;/span</span><br><span class="line">            &gt;&lt;span v-if=&quot;props.course.skillFlag&quot;&gt;&#123;&#123; course.skillFlag &#125;&#125;&lt;/span&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;template #badge&gt;</span><br><span class="line">        &lt;div</span><br><span class="line">          class=&quot;course-badge&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          &lt;span&gt;&#123;&#123; course.studyStatus &#125;&#125;&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/Listing&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import Listing from &quot;@/components/Listing.vue&quot;;</span><br><span class="line">import &#123; IlistItem &#125; from &quot;@/constants/learningTask&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">let course:IlistItem = $ref()</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<h3 id="滚动加载分页组件"><a href="#滚动加载分页组件" class="headerlink" title="滚动加载分页组件"></a>滚动加载分页组件</h3></blockquote>
+<h3 id="需求背景-1"><a href="#需求背景-1" class="headerlink" title="需求背景"></a>需求背景</h3><p><em>封装原因</em></p>
+<ol>
+<li>列表的数据量庞大，如果单次全部请求的话，会花费很长的时间，所以需要分页多次进行请求</li>
+<li>为用户提供手动刷新的选择</li>
+</ol>
+<p><em>需求分析</em></p>
+<ol>
+<li>当用户划到底部，触发加载下一页的列表</li>
+<li>用户下拉，刷新当前列表</li>
+<li>将请求得到的数据抽离出分页组件，抛出请求的数据给调用组件，只提供必要的触底、刷新事件和分页处理</li>
+</ol>
+<h3 id="1-0-整体设计框架-1"><a href="#1-0-整体设计框架-1" class="headerlink" title="1.0 整体设计框架"></a>1.0 整体设计框架</h3><p>本小节将介绍滚动加载分页组件的设计思路和整体框架</p>
+<h4 id="1-0-1-分页组件内部交互逻辑"><a href="#1-0-1-分页组件内部交互逻辑" class="headerlink" title="1.0.1 分页组件内部交互逻辑"></a>1.0.1 分页组件内部交互逻辑</h4><p><img src="/../img/image-20221202105238542.png" alt="image-20221202105238542"></p>
+<p>组件内部主要分为三个触发事件</p>
+<ol>
+<li>在组件初始化的时候，进行一次<code>load</code>加载，触发<code>handleLoad</code>事件，向调用组件抛出<code>load</code>事件</li>
+<li>当上划到触底的时候，触发<code>handleLoad</code>事件，向调用组件抛出<code>load</code>事件</li>
+<li>当监听到用户进行下拉操作的时候，触发<code>onRefresh</code>事件，重置分页配置（修改<code>pageNo</code>,<code>pageSize</code>等）</li>
+</ol>
+<h4 id="1-0-2-分页组件外部交互逻辑"><a href="#1-0-2-分页组件外部交互逻辑" class="headerlink" title="1.0.2 分页组件外部交互逻辑"></a>1.0.2 分页组件外部交互逻辑</h4><p><img src="/../img/image-20221202111556638.png" alt="image-20221202111556638"></p>
+<p>外部交互主要分为三部分</p>
+<ol>
+<li>首次加载 外部组件监听分页组件的load事件，传入接口地址与请求参数，交于分页组件进行请求，之后分页组件将请求结果返回给外部组件进行数据处理</li>
+<li>触发触底 外部组件监听分页组件的load事件，传入接口地址与请求参数，交于分页组件进行请求，之后分页组件将请求结果返回给外部组件进行数据处理</li>
+<li>触发下拉刷新，外部组件监听分页组件的refresh事件，处理当前数据，之后调用分页组件load方法，之后将分页组件请求的结果返回给外部组件进行数据处理</li>
+</ol>
+<h3 id="1-1-内部组件的具体设计"><a href="#1-1-内部组件的具体设计" class="headerlink" title="1.1 内部组件的具体设计"></a>1.1 内部组件的具体设计</h3><p>内部组件共有四个方法，抛出三个可供外部调用的方法，这些方法在以下场景会被调用</p>
+<ul>
+<li><p>组件内部<code>load</code>方法，在内部不会被调用，抛出供外部进行调用，<code>load</code>方法负责加载请求新的数据，<strong>需要两个参数</strong>：<strong>请求函数：function、请求参数：params</strong>，之后会进行分页请求，可实现页数的<strong>自增处理</strong>以及<strong>数据的抛出给调用组件</strong>处理。</p>
+</li>
+<li><p>当组件初始化的时候，会触发<code>handleLoad</code>事件，抛出<code>load</code>事件，表示开始加载数据，此时调用组件方需要去监听该**<code>load</code>**事件，获取到返回的数据进行处理。</p>
+</li>
+<li><p>触发触底的时候流程同组件初始化，此时内部组件的<code>pageNo</code>会不断自增，请求下一页的数据，直至请求结束</p>
+</li>
+<li><p>上拉刷新，内部组件会触发<code>handleRefresh</code>事件，将分页请求的配置进行重置，<code>pageNo</code>重置为1等，抛出<code>refresh</code>事件，此时调用方组件监听该事件，之后需要手动对数据进行处理，比如清空当前的列表，之后需要通过<code>Ref</code>调用<code>load</code>方法，重新请求数据，之后流程同第二步。</p>
+</li>
+</ul>
+<p><em><strong>设计原因</strong></em></p>
+<ol>
+<li>请求的数据放在调用组件中而不是放在分页组件中，因为该数据本身是属于调用组件页面的一部分，而不是分页组件的。调用组件可以对请求数据进行格式限制，以及各种灵活的操作。</li>
+<li>为了避免通过props传递函数给分页组件，设计就采用了子组件通过<code>defineExpose</code>暴露出相对应的函数，外部组件通过Ref的方式去调用子组件的方法去请求数据。</li>
+</ol>
+<h4 id="1-1-1-load方法实现"><a href="#1-1-1-load方法实现" class="headerlink" title="1.1.1 load方法实现"></a>1.1.1 load方法实现</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">load</span> = <span class="keyword">async</span> (<span class="params"><span class="attr">requestFn</span>: <span class="title class_">Function</span>, <span class="attr">params</span>: <span class="title class_">Object</span></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="title function_">async</span> (resolve, rejects) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      isLoading.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">requestFn</span>(&#123;</span><br><span class="line">        <span class="attr">pageNo</span>: page.<span class="property">pageNo</span>,</span><br><span class="line">        <span class="attr">pageSize</span>: page.<span class="property">pageSize</span>,</span><br><span class="line">        ...params,</span><br><span class="line">      &#125;);</span><br><span class="line">      isRefreshing.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">      page.<span class="property">total</span> = res.<span class="property">count</span>;</span><br><span class="line">      <span class="comment">// 数据小于单次请求，避免二次请求</span></span><br><span class="line">      <span class="keyword">if</span> (res.<span class="property">count</span> &lt;= page.<span class="property">pageSize</span>) &#123;</span><br><span class="line">        finished.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 数据请求完毕</span></span><br><span class="line">      <span class="keyword">if</span> (requestCount * page.<span class="property">pageSize</span> &gt;= page.<span class="property">total</span>) &#123;   </span><br><span class="line">        finished.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">        page.<span class="property">pageNo</span> = <span class="number">1</span>;</span><br><span class="line">        requestCount = <span class="number">1</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        page.<span class="property">pageNo</span>++;</span><br><span class="line">        requestCount++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="title function_">resolve</span>(res);</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">nextTick</span>();</span><br><span class="line">      isLoading.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="comment">// 错误</span></span><br><span class="line">      isLoading.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">      finished.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">      <span class="title function_">rejects</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>load</code>方法返回了一个<code>Promise</code>，当将请求结果通过<code>resolve()</code>返回出去之后，需要等待调用组件将数据列表渲染成功，之后将<code>isLoading</code>置为false（表示本次请求结束），否则可能会因为列表渲染不及时导致触发多次触底函数。</p>
+<p><em>其他</em></p>
+<ul>
+<li>组件提供了一个重置请求参数的方法（<code>pageNo、isLoading</code>等字段重置为初始值）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 重置请求参数，不抛出 refresh事件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">justRefresh</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  isRefreshing.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">  finished.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">  isLoading.<span class="property">value</span> = <span class="literal">true</span>;</span><br><span class="line">  page.<span class="property">pageNo</span> = <span class="number">1</span>;</span><br><span class="line">  isRefreshing.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-1-2-供外部传入的配置"><a href="#1-1-2-供外部传入的配置" class="headerlink" title="1.1.2 供外部传入的配置"></a>1.1.2 供外部传入的配置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const props = defineProps&lt;&#123;</span><br><span class="line">  finishText?: string; // 列表加载结束的提示文字</span><br><span class="line">&#125;&gt;();</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-3-组件提供的插槽"><a href="#1-1-3-组件提供的插槽" class="headerlink" title="1.1.3  组件提供的插槽"></a>1.1.3  组件提供的插槽</h4><ul>
+<li>列表内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;slot name=&quot;list&quot;&gt;&lt;/slot&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="快速上手-1"><a href="#快速上手-1" class="headerlink" title="快速上手"></a>快速上手</h3><p>本小节将介绍如何在项目中使用 滚动加载分页组件</p>
+<p><em>引入</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;PageList</span><br><span class="line">      ref=&quot;pageListRef&quot;</span><br><span class="line">      @load=&quot;handleOnLoad&quot;</span><br><span class="line">      @refresh=&quot;handleRefresh&quot;</span><br><span class="line">      finish-text=&quot;&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &lt;template #list&gt;</span><br><span class="line">        &lt;template v-for=&quot;course in courseList&quot; :key=&quot;course.id&quot;&gt;</span><br><span class="line">          &#123;&#123; course.name &#125;&#125;</span><br><span class="line">        &lt;/template&gt;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/PageList&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import PageList from &quot;@/views/courseCenter/components/PageList.vue&quot;;</span><br><span class="line">import &#123; IlistItem &#125; from &quot;@/constants/learningTask&quot;;</span><br><span class="line">import &#123; getTestList &#125; from &quot;@/api/TestController&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">let courseList: Array&lt;IlistItem&gt; = $ref()</span><br><span class="line">const requestParams = &#123;&#125;</span><br><span class="line">// 触底加载</span><br><span class="line">const handleOnLoad = async  () =&gt; &#123;</span><br><span class="line">  getData(getTestList,requestParams)</span><br><span class="line">&#125;</span><br><span class="line">// 下拉刷新</span><br><span class="line">const handleRefresh = () =&gt; &#123;</span><br><span class="line">  courseList.splice(0)</span><br><span class="line">  getData(getTestList,requestParams)</span><br><span class="line">&#125;</span><br><span class="line">// 请求数据</span><br><span class="line">const getData = async(queryFn:Function,requestParams:Object) =&gt; &#123;</span><br><span class="line">  const &#123; data &#125; = await pageListRef?.load(queryFn,requestParams)</span><br><span class="line">  courseList.push(...data)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saberwode.github.io">一叶凉夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saberwode.github.io/2023/01/03/work_%E7%BB%84%E4%BB%B6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/">https://saberwode.github.io/2023/01/03/work_%E7%BB%84%E4%BB%B6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saberwode.github.io" target="_blank">一叶凉夏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/work/">work</a></div><div class="post-share"><div class="social-share" data-image="/blog_img/4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/01/03/vueProject_book/" title="book"><img class="cover" src="/blog_img/9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">book</div></div><div class="info-2"><div class="info-item-1">书籍管理123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;	&lt;meta charset=&quot;utf-8&quot;&gt;	&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;	&lt;div id=&quot;app&quot;&gt;		&lt;table border=&quot;1&quot; cellspacing=&quot;0&quot;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/work_%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86-V5/" title="项目梳理-V5"><img class="cover" src="/blog_img/6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">项目梳理-V5</div></div><div class="info-2"><div class="info-item-1">项目梳理1.app.vue首先是查看是否有shell属性，没有的话进行初始化 window[“shell”]表示为 可以理解为通用能力，相当于客户端给前端提供的方法和能力 2.index.vue登录成功后跳转到paperList页面...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/01/03/problem_game/" title="game"><img class="cover" src="/blog_img/9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">game</div></div><div class="info-2"><div class="info-item-1">Tic Tac Toe项目总结1.v-for使用报错：Cannot use v-for on stateful component root element because it renders multiple elements. 不能在根元素（root element）使用 v-for，因为v-for是个循环体呈现多个元素，v-for在根元素上导致无法渲染。 &#x3D;&#x3D;使用v-for的时候需要在外层加上一个div不能让他处在根元素上&#x3D;&#x3D; 正确示例： 12345&lt;template id=&quot;block1&quot;&gt;        &lt;div class=&quot;body&quot;&gt;            &lt;div class=&quot;box1&quot; v-for=&quot;item in total_stats1&quot; @click=&quot;&quot;&gt;&#123;&#123;item.id&#125;&#125;&lt;/div&gt;       ...</div></div></div></a><a class="pagination-related" href="/2023/01/03/problem_problem/" title="problem"><img class="cover" src="/blog_img/7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">problem</div></div><div class="info-2"><div class="info-item-1">这里是问题汇总1.关于组件化问题：报错内容: did you register the component correctly? For recursive components, make sure to provide the &quot;name&quot; option. 翻译过来是： 您是否正确注册了组件？对于递归组件，请确保提供“name”选项 出现问题的原因： 所渲染的Vue实例不能在组件前面，若在前面创建实例，则无法读取到后面创建的组件。 即new Vue()&#x3D;&#x3D;实例化Vue要放在后面&#x3D;&#x3D; 此时问题解决，同时网上还会有引起类似报错的操作：  如果全局注册,组件名称问题:   若是组件名称是大写,Vue会报错. 可以修改为下面两种:  修改组件名称为小写,即mycomponent即可解决.  如使用局部注册,则是components少写了个s:         2.注意string类型和number类型比较会出问题1234567891011for (let item of this.childstats) &#123;   ...</div></div></div></a><a class="pagination-related" href="/2023/01/03/vueProject_Tic%20Tac%20Toe/" title="Tic Tac Toe"><img class="cover" src="/blog_img/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">Tic Tac Toe</div></div><div class="info-2"><div class="info-item-1">Tic Tac Toe小游戏目前实现的功能： 初始化3×3的子组件网格 绑定网格id 点击网格，向父组件传递id值 父组件接收到id，会对其进行计数，初始为0接受到一次id，计数加一（第一次接受id，count &#x3D;1） 判断逻辑，如果count为奇数，且clickstate为1，修改其player值为1为偶数就修改为2,clicktate值置0 判断逻辑，如果点击过该网格（clickstate &#x3D;&#x3D;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/vueProject_book/" title="book"><img class="cover" src="/blog_img/9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">book</div></div><div class="info-2"><div class="info-item-1">书籍管理123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;	&lt;meta charset=&quot;utf-8&quot;&gt;	&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;	&lt;div id=&quot;app&quot;&gt;		&lt;table border=&quot;1&quot; cellspacing=&quot;0&quot;...</div></div></div></a><a class="pagination-related" href="/2023/05/08/work_Aicode%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/" title="Aicode案例分享"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-08</div><div class="info-item-2">Aicode案例分享</div></div><div class="info-2"><div class="info-item-1">一、转化对象数组的格式1. 需求：有一个对象数组，需要将该数组转化为后端需要的格式数组： 123456789101112131415161718192021[    &#123;      enrollTaskId: 1105,      label: &#x27;对象1&#x27;    &#125;,    &#123;      id: 3,      parentId: 1105,      label: &#x27;对象2&#x27;    &#125;,    &#123;      id: 4,      parentId: 1105,      label: &#x27;对象3&#x27;    &#125;,    &#123;      id: 66,      parentId: 1200,      label: &#x27;对象4&#x27;    &#125;  ]  转化后的数组： 12345678910[    &#123;      enrollTaskId: 1105,      channelIds: [3, 4]    &#125;,  ...</div></div></div></a><a class="pagination-related" href="/2023/03/13/work_nginx/" title="nginx"><img class="cover" src="/blog_img/3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-13</div><div class="info-item-2">nginx</div></div><div class="info-2"><div class="info-item-1">nginxnginx虚拟主机配置文件(conf.d)如果虚拟主机配置多了，需要将配置文件拆分出来，此时可将文件放在conf.d中，建立各自对应的配置文件。 让上述配置生效的话需要在nginx.conf的http块中加上include conf.d/*.conf; </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%88%97%E8%A1%A8%E7%BB%84%E4%BB%B6%E3%80%81%E6%BB%9A%E5%8A%A8%E5%8A%A0%E8%BD%BD%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">通用列表组件、滚动加载分页组件详细设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%88%97%E8%A1%A8%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">通用列表组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">需求背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">1.3.</span> <span class="toc-text">最终实现效果展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-0-%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1%E6%A1%86%E6%9E%B6"><span class="toc-number">1.4.</span> <span class="toc-text">1.0 整体设计框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-0-1-%E5%88%97%E8%A1%A8%E7%BB%84%E4%BB%B6%E5%A4%96%E9%83%A8%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.0.1 列表组件外部交互流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%86%85%E9%83%A8%E7%BB%84%E4%BB%B6%E5%85%B7%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">1.1 内部组件具体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E4%BE%9B%E5%A4%96%E9%83%A8%E4%BC%A0%E5%85%A5%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.1.1 供外部传入的配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E7%BB%84%E4%BB%B6%E6%8F%90%E4%BE%9B%E7%9A%84%E6%8F%92%E6%A7%BD"><span class="toc-number">1.5.2.</span> <span class="toc-text">1.1.2 组件提供的插槽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">1.6.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E5%8A%A0%E8%BD%BD%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.7.</span> <span class="toc-text">滚动加载分页组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF-1"><span class="toc-number">1.8.</span> <span class="toc-text">需求背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-0-%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1%E6%A1%86%E6%9E%B6-1"><span class="toc-number">1.9.</span> <span class="toc-text">1.0 整体设计框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-0-1-%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91"><span class="toc-number">1.9.1.</span> <span class="toc-text">1.0.1 分页组件内部交互逻辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-0-2-%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E5%A4%96%E9%83%A8%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91"><span class="toc-number">1.9.2.</span> <span class="toc-text">1.0.2 分页组件外部交互逻辑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%86%85%E9%83%A8%E7%BB%84%E4%BB%B6%E7%9A%84%E5%85%B7%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.10.</span> <span class="toc-text">1.1 内部组件的具体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-load%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.10.1.</span> <span class="toc-text">1.1.1 load方法实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E4%BE%9B%E5%A4%96%E9%83%A8%E4%BC%A0%E5%85%A5%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.10.2.</span> <span class="toc-text">1.1.2 供外部传入的配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E7%BB%84%E4%BB%B6%E6%8F%90%E4%BE%9B%E7%9A%84%E6%8F%92%E6%A7%BD"><span class="toc-number">1.10.3.</span> <span class="toc-text">1.1.3  组件提供的插槽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B-1"><span class="toc-number">1.11.</span> <span class="toc-text">快速上手</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

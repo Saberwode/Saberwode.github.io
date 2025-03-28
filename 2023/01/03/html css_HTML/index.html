@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HTML | 一叶凉夏</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里是HTML笔记1.a元素中的target属性的值： _blank：浏览器新打开页面加载 _self：默认目标，在相同窗口加载 _parent：父窗口打开 _top：载入包含这个超链接的窗口  2.  &lt; img&gt;标签： src属性用于描述路径 alt属性用于加载不成功时显示内容 title属性用于鼠标悬停在图片上显示提示文字  3.&lt; div&gt;标签：用于布局，div内的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML">
+<meta property="og:url" content="https://saberwode.github.io/2023/01/03/html%20css_HTML/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:description" content="这里是HTML笔记1.a元素中的target属性的值： _blank：浏览器新打开页面加载 _self：默认目标，在相同窗口加载 _parent：父窗口打开 _top：载入包含这个超链接的窗口  2.  &lt; img&gt;标签： src属性用于描述路径 alt属性用于加载不成功时显示内容 title属性用于鼠标悬停在图片上显示提示文字  3.&lt; div&gt;标签：用于布局，div内的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/blog_img/7.jpg">
+<meta property="article:published_time" content="2023-01-03T06:33:56.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:38:21.022Z">
+<meta property="article:author" content="一叶凉夏">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/blog_img/7.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "HTML",
+  "url": "https://saberwode.github.io/2023/01/03/html%20css_HTML/",
+  "image": "https://saberwode.github.io/blog_img/7.jpg",
+  "datePublished": "2023-01-03T06:33:56.000Z",
+  "dateModified": "2025-03-18T04:38:21.022Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "一叶凉夏",
+      "url": "https://saberwode.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/2023/01/03/html%20css_HTML/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HTML',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog_img/7.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a><a class="nav-page-title" href="/"><span class="site-name">HTML</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">HTML</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-18T04:38:21.022Z" title="更新于 2025-03-18 12:38:21">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/html-css/">html css</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="这里是HTML笔记"><a href="#这里是HTML笔记" class="headerlink" title="这里是HTML笔记"></a>这里是HTML笔记</h2><h5 id="1-a元素中的target属性的值："><a href="#1-a元素中的target属性的值：" class="headerlink" title="1.a元素中的target属性的值："></a>1.a元素中的target属性的值：</h5><ul>
+<li>_blank：浏览器新打开页面加载</li>
+<li>_self：默认目标，在相同窗口加载</li>
+<li>_parent：父窗口打开</li>
+<li>_top：载入包含这个超链接的窗口</li>
+</ul>
+<h5 id="2-img-标签："><a href="#2-img-标签：" class="headerlink" title="2.  &lt; img&gt;标签："></a>2.  &lt; img&gt;标签：</h5><ul>
+<li>src属性用于描述路径</li>
+<li>alt属性用于加载不成功时显示内容</li>
+<li>title属性用于鼠标悬停在图片上显示提示文字</li>
+</ul>
+<h5 id="3-div-标签："><a href="#3-div-标签：" class="headerlink" title="3.&lt; div&gt;标签："></a>3.&lt; div&gt;标签：</h5><p>用于布局，div内的字体独占一行 下一个div块会自动另起一行</p>
+<h5 id="4-b-加粗-strong-加粗且强调-i-文字倾斜-em-倾斜且强调-pre-保留文本的换行和空格-宽度"><a href="#4-b-加粗-strong-加粗且强调-i-文字倾斜-em-倾斜且强调-pre-保留文本的换行和空格-宽度" class="headerlink" title="4.&lt; b&gt;加粗 &lt; strong&gt;加粗且强调 &lt; i&gt;文字倾斜 &lt; em&gt;倾斜且强调 &lt; pre&gt;保留文本的换行和空格 宽度"></a>4.&lt; b&gt;加粗 &lt; strong&gt;加粗且强调 &lt; i&gt;文字倾斜 &lt; em&gt;倾斜且强调 &lt; pre&gt;保留文本的换行和空格 宽度</h5><h5 id="5-sub-和-sup-设置文本的上标和下标-上标就比如是（二次方）的形式"><a href="#5-sub-和-sup-设置文本的上标和下标-上标就比如是（二次方）的形式" class="headerlink" title="5.&lt; sub&gt;和&lt; sup&gt;设置文本的上标和下标 上标就比如是（二次方）的形式"></a>5.&lt; sub&gt;和&lt; sup&gt;设置文本的上标和下标 上标就比如是（二次方）的形式</h5><h5 id="6-转义字符：-lt-小于号（"><a href="#6-转义字符：-lt-小于号（" class="headerlink" title="6.转义字符：(&amp;lt; ) 小于号（&lt;） (&amp;gt; )大于号 ( &amp;amp;) 与号（&amp;）(&amp;nbsp;) 空格 (&amp;times; )乘号×(&amp;divide;) 除号（÷）"></a>6.<code>转义字符：(&amp;lt; ) 小于号（&lt;） (&amp;gt; )大于号 ( &amp;amp;) 与号（&amp;）(&amp;nbsp;) 空格 (&amp;times; )乘号×(&amp;divide;) 除号（÷）</code></h5><h5 id="7-行级标签与块级标签之间的转换，通过display属性，如果属性值为inline，那么就是转化为行级标签-而-block则是块级标签"><a href="#7-行级标签与块级标签之间的转换，通过display属性，如果属性值为inline，那么就是转化为行级标签-而-block则是块级标签" class="headerlink" title="7.行级标签与块级标签之间的转换，通过display属性，如果属性值为inline，那么就是转化为行级标签 而 block则是块级标签"></a>7.行级标签与块级标签之间的转换，通过display属性，如果属性值为inline，那么就是转化为行级标签 而 block则是块级标签</h5><h5 id="8-项目命名规范："><a href="#8-项目命名规范：" class="headerlink" title="8.项目命名规范："></a>8.项目命名规范：</h5><img src="C:\Users\gjm\AppData\Local\Temp\Image.png" alt="Image" style="zoom: 67%;" />
+
+
+
+<h5 id="9-form表单的input标签中的type属性值："><a href="#9-form表单的input标签中的type属性值：" class="headerlink" title="9.form表单的input标签中的type属性值："></a>9.form表单的input标签中的type属性值：</h5><img src="C:\Users\gjm\AppData\Local\Temp\Image.png" alt="Image" style="zoom: 67%;" />
+
+<ul>
+<li><p>其中text是文本框，用户可以里面输入任何数字</p>
+</li>
+<li><p>password是密码框，用户看不到输入的内容</p>
+</li>
+<li><p>radio是单选框，也可以实现多选，如果要实现多选一，必须为其加入name属性，且同为单选框的选项name值需要相同</p>
+</li>
+<li><p>checkbox是复选框，可以实现多选</p>
+</li>
+</ul>
+<h5 id="10-form表单中的其他属性："><a href="#10-form表单中的其他属性：" class="headerlink" title="10.form表单中的其他属性："></a>10.form表单中的其他属性：</h5><p>checked主要针对单选框和复选框，一打开网页就可以默认选中某一个选项maxlength是用户可以在表单元素中输入的最大字符</p>
+<h5 id="11-select属性："><a href="#11-select属性：" class="headerlink" title="11.select属性："></a>11.select属性：</h5><p>其中option属性表示选项，select属性是一个下拉表，可以选择下拉表中的属性值</p>
+<h5 id="12-下划线：-hr"><a href="#12-下划线：-hr" class="headerlink" title="12.下划线：&lt; hr&gt;"></a>12.下划线：&lt; hr&gt;</h5><h5 id="13-html实现内部跳转：-加上-id就可以实现点击链接跳转到目标id的位置去"><a href="#13-html实现内部跳转：-加上-id就可以实现点击链接跳转到目标id的位置去" class="headerlink" title="13.html实现内部跳转：# 加上 id就可以实现点击链接跳转到目标id的位置去"></a>13.html实现内部跳转：# 加上 id就可以实现点击链接跳转到目标id的位置去</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;#contacts-header&quot;</span>&gt;<span class="title class_">Contacts</span>&lt;<span class="regexp">/a&gt;...&lt;h2 id=&quot;contacts-header&quot;&gt;Contacts&lt;/</span>h2&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="14-占位符placeholder"><a href="#14-占位符placeholder" class="headerlink" title="14.占位符placeholder:"></a>14.占位符placeholder:</h5><img src="file:///C:/Users/gjm/AppData/Local/Temp/enhtmlclip/Image.png" alt="img" style="zoom:50%;" />
+
+<img src="C:\Users\gjm\AppData\Local\Temp\Image.png" alt="Image" style="zoom:50%;" />
+
+<p>其中字体选中之后不会消失，当你输入第一个数字之后才会消失</p>
+<h5 id="15-input标签："><a href="#15-input标签：" class="headerlink" title="15.input标签："></a>15.input标签：</h5><p>disabled属性：使表单变灰色，用户不能向其输入任何数据</p>
+<p>label 用于绑定input，其中<code>&lt;label for=&quot;xx&quot;&gt;</code>与<code>&lt;input id=&quot;xx&quot;&gt;</code>相对应，当点击label中的内容时，就会聚焦到input里面</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saberwode.github.io">一叶凉夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saberwode.github.io/2023/01/03/html%20css_HTML/">https://saberwode.github.io/2023/01/03/html%20css_HTML/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saberwode.github.io" target="_blank">一叶凉夏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post-share"><div class="social-share" data-image="/blog_img/7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/01/03/html%20css_Gride%E5%B8%83%E5%B1%80/" title="Gride布局"><img class="cover" src="/blog_img/9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Gride布局</div></div><div class="info-2"><div class="info-item-1">3.grid布局： 划分行列  grid-template-columns：列宽 grid-template-rows	：行高 12345.container &#123;  display: grid;  grid-template-columns: 100px 100px 100px;  grid-template-rows: 33.33% 33.33% 33.33%;&#125;  其中几个参数就是几行几列 12345.container &#123;  display: grid;  grid-template-columns: repeat(3, 33.33%);  grid-template-rows: repeat(3, 33.33%);&#125;  repeat重复几次 1grid-template-columns: repeat(2, 100px 20px 80px);  将100px 20px 80px重复两次 1234.container &#123;  display: grid;  grid-template-columns:...</div></div></div></a><a class="pagination-related  no-desc" href="/2023/01/03/html%20css_css%E7%9A%84%E5%9D%91/" title="css的坑"><img class="cover" src="/blog_img/8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">css的坑</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/01/03/TypeScript_TypeScript/" title="TypeScript"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">TypeScript</div></div><div class="info-2"><div class="info-item-1">TypeScript学习1.never类型never类型主要应用于以下场景 比方说有一个函数 123456789101112function handleMessage(message: string | number)&#123;  switch (typeof message)&#123;    case &#x27;string&#x27;:      console.log(&#x27;string处理message&#x27;);      break;    case &#x27;number&#x27;:      console.log(&#x27;number处理message&#x27;);      break;    //default:    //  const check: never = message  &#125;&#125;  此时函数支持的参数有string和number类型的，如果有一个人想去传一个boolean类型的参数，首先肯定是会报错的，但是如果修改了hadleMessage函数的话，比如在参数中添加|...</div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E8%A7%86%E9%A2%91%E8%BF%9B%E5%BA%A6/" title="视频进度"><img class="cover" src="/blog_img/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">视频进度</div></div><div class="info-2"><div class="info-item-1">视频进度实战11    					看完了 js高级						1：34 </div></div></div></a><a class="pagination-related" href="/2023/01/03/TypeScript_%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" title="遇到的坑"><img class="cover" src="/blog_img/1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">遇到的坑</div></div><div class="info-2"><div class="info-item-1">坑1.当使用prettier进行对代码进行规范限制的时候，使用editorconfig和prettier中vscode的插件都正常启用时候，发现对ts代码的格式化不起作用 方法：按ctrl+shift+t打开settting.json加入&quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;, 就可以了 </div></div></div></a><a class="pagination-related" href="/2023/01/03/api/" title="api"><img class="cover" src="/blog_img/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">api</div></div><div class="info-2"><div class="info-item-1">1https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api  老师的api </div></div></div></a><a class="pagination-related" href="/2023/01/03/es6_%E8%A7%A3%E6%9E%84/" title="解构"><img class="cover" src="/blog_img/7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">解构</div></div><div class="info-2"><div class="info-item-1">1....解构先上个例子： 首先有一个数组：stack 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27; &#125; ]  然后想将另一个数组给加进来:req.body.content 12345[   &#123; value: &#x27;测试1&#x27;, clickStatus: &#x27;true&#x27; &#125;,   &#123; value: &#x27;测试2&#x27;, clickStatus: &#x27;false&#x27; &#125;,   &#123; value: &#x27;测试3&#x27;, clickStatus: &#x27;false&#x27;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/git%20clone%E9%97%AE%E9%A2%98/" title="git clone问题"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">git clone问题</div></div><div class="info-2"><div class="info-item-1">报错error: RPC failed; result&#x3D;35, HTTP code &#x3D; 0fatal: The remote end hung up unexpectedly a: 1,2,3 b:1,2 c:,1 a:1,2 b:1 c:压入栈 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E9%87%8C%E6%98%AFHTML%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">这里是HTML笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-a%E5%85%83%E7%B4%A0%E4%B8%AD%E7%9A%84target%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC%EF%BC%9A"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.a元素中的target属性的值：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-img-%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">2.  &lt; img&gt;标签：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-div-%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">3.&lt; div&gt;标签：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-b-%E5%8A%A0%E7%B2%97-strong-%E5%8A%A0%E7%B2%97%E4%B8%94%E5%BC%BA%E8%B0%83-i-%E6%96%87%E5%AD%97%E5%80%BE%E6%96%9C-em-%E5%80%BE%E6%96%9C%E4%B8%94%E5%BC%BA%E8%B0%83-pre-%E4%BF%9D%E7%95%99%E6%96%87%E6%9C%AC%E7%9A%84%E6%8D%A2%E8%A1%8C%E5%92%8C%E7%A9%BA%E6%A0%BC-%E5%AE%BD%E5%BA%A6"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">4.&lt; b&gt;加粗 &lt; strong&gt;加粗且强调 &lt; i&gt;文字倾斜 &lt; em&gt;倾斜且强调 &lt; pre&gt;保留文本的换行和空格 宽度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-sub-%E5%92%8C-sup-%E8%AE%BE%E7%BD%AE%E6%96%87%E6%9C%AC%E7%9A%84%E4%B8%8A%E6%A0%87%E5%92%8C%E4%B8%8B%E6%A0%87-%E4%B8%8A%E6%A0%87%E5%B0%B1%E6%AF%94%E5%A6%82%E6%98%AF%EF%BC%88%E4%BA%8C%E6%AC%A1%E6%96%B9%EF%BC%89%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">5.&lt; sub&gt;和&lt; sup&gt;设置文本的上标和下标 上标就比如是（二次方）的形式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%EF%BC%9A-lt-%E5%B0%8F%E4%BA%8E%E5%8F%B7%EF%BC%88"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">6.转义字符：(&lt; ) 小于号（&lt;） (&gt; )大于号 ( &amp;) 与号（&amp;）(&nbsp;) 空格 (&times; )乘号×(&divide;) 除号（÷）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E8%A1%8C%E7%BA%A7%E6%A0%87%E7%AD%BE%E4%B8%8E%E5%9D%97%E7%BA%A7%E6%A0%87%E7%AD%BE%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%8C%E9%80%9A%E8%BF%87display%E5%B1%9E%E6%80%A7%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%B1%9E%E6%80%A7%E5%80%BC%E4%B8%BAinline%EF%BC%8C%E9%82%A3%E4%B9%88%E5%B0%B1%E6%98%AF%E8%BD%AC%E5%8C%96%E4%B8%BA%E8%A1%8C%E7%BA%A7%E6%A0%87%E7%AD%BE-%E8%80%8C-block%E5%88%99%E6%98%AF%E5%9D%97%E7%BA%A7%E6%A0%87%E7%AD%BE"><span class="toc-number">1.0.0.7.</span> <span class="toc-text">7.行级标签与块级标签之间的转换，通过display属性，如果属性值为inline，那么就是转化为行级标签 而 block则是块级标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-%E9%A1%B9%E7%9B%AE%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="toc-number">1.0.0.8.</span> <span class="toc-text">8.项目命名规范：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-form%E8%A1%A8%E5%8D%95%E7%9A%84input%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84type%E5%B1%9E%E6%80%A7%E5%80%BC%EF%BC%9A"><span class="toc-number">1.0.0.9.</span> <span class="toc-text">9.form表单的input标签中的type属性值：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10-form%E8%A1%A8%E5%8D%95%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="toc-number">1.0.0.10.</span> <span class="toc-text">10.form表单中的其他属性：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11-select%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="toc-number">1.0.0.11.</span> <span class="toc-text">11.select属性：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-%E4%B8%8B%E5%88%92%E7%BA%BF%EF%BC%9A-hr"><span class="toc-number">1.0.0.12.</span> <span class="toc-text">12.下划线：&lt; hr&gt;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#13-html%E5%AE%9E%E7%8E%B0%E5%86%85%E9%83%A8%E8%B7%B3%E8%BD%AC%EF%BC%9A-%E5%8A%A0%E4%B8%8A-id%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E7%82%B9%E5%87%BB%E9%93%BE%E6%8E%A5%E8%B7%B3%E8%BD%AC%E5%88%B0%E7%9B%AE%E6%A0%87id%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%8E%BB"><span class="toc-number">1.0.0.13.</span> <span class="toc-text">13.html实现内部跳转：# 加上 id就可以实现点击链接跳转到目标id的位置去</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#14-%E5%8D%A0%E4%BD%8D%E7%AC%A6placeholder"><span class="toc-number">1.0.0.14.</span> <span class="toc-text">14.占位符placeholder:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#15-input%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">1.0.0.15.</span> <span class="toc-text">15.input标签：</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

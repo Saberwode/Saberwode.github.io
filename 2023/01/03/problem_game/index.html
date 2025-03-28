@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>game | 一叶凉夏</title><meta name="author" content="一叶凉夏"><meta name="copyright" content="一叶凉夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Tic Tac Toe项目总结1.v-for使用报错：Cannot use v-for on stateful component root element because it renders multiple elements. 不能在根元素（root element）使用 v-for，因为v-for是个循环体呈现多个元素，v-for在根元素上导致无法渲染。 &#x3D;&#x3D;使用v-f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="game">
+<meta property="og:url" content="https://saberwode.github.io/2023/01/03/problem_game/index.html">
+<meta property="og:site_name" content="一叶凉夏">
+<meta property="og:description" content="Tic Tac Toe项目总结1.v-for使用报错：Cannot use v-for on stateful component root element because it renders multiple elements. 不能在根元素（root element）使用 v-for，因为v-for是个循环体呈现多个元素，v-for在根元素上导致无法渲染。 &#x3D;&#x3D;使用v-f">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saberwode.github.io/blog_img/9.jpg">
+<meta property="article:published_time" content="2023-01-03T06:33:56.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:38:21.023Z">
+<meta property="article:author" content="一叶凉夏">
+<meta property="article:tag" content="work">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saberwode.github.io/blog_img/9.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "game",
+  "url": "https://saberwode.github.io/2023/01/03/problem_game/",
+  "image": "https://saberwode.github.io/blog_img/9.jpg",
+  "datePublished": "2023-01-03T06:33:56.000Z",
+  "dateModified": "2025-03-18T04:38:21.023Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "一叶凉夏",
+      "url": "https://saberwode.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://saberwode.github.io/2023/01/03/problem_game/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'game',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/cat.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog_img/9.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">一叶凉夏</span></a><a class="nav-page-title" href="/"><span class="site-name">game</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-id-card"></i><span> 简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">game</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T06:33:56.000Z" title="发表于 2023-01-03 14:33:56">2023-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-18T04:38:21.023Z" title="更新于 2025-03-18 12:38:21">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/problem/">problem</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="Tic-Tac-Toe项目总结"><a href="#Tic-Tac-Toe项目总结" class="headerlink" title="Tic Tac Toe项目总结"></a>Tic Tac Toe项目总结</h2><h4 id="1-v-for使用报错："><a href="#1-v-for使用报错：" class="headerlink" title="1.v-for使用报错："></a>1.v-for使用报错：</h4><p><code>Cannot use v-for on stateful component root element because it renders multiple elements.</code></p>
+<p>不能在根元素（root element）使用 v-for，因为v-for是个循环体呈现多个元素，v-for在根元素上导致无法渲染。</p>
+<p>&#x3D;&#x3D;使用<code>v-for</code>的时候需要在外层加上一个<code>div</code>不能让他处在根元素上&#x3D;&#x3D;</p>
+<p>正确示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;block1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;body&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;item in total_stats1&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;&quot;</span>&gt;</span>&#123;&#123;item.id&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>错误示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;block1&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;item in total_stats1&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;&quot;</span>&gt;</span>&#123;&#123;item.id&#125;&#125;&lt;/div</span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-本次设计思路："><a href="#2-本次设计思路：" class="headerlink" title="2.本次设计思路："></a>2.本次设计思路：</h4><ul>
+<li>刚开始是想到通过定义一个子组件，这个组件的模板是一个div，作为一个小网格</li>
+<li>然后在子组件data属性中定义一个数组，里面存放了当前小网格里面的信息（<code>id</code>：用来标识表格，<code>clickState</code>：点击状态，其实这个属性没用到，可以删除，<code>player</code>：用来标识玩家）</li>
+<li>接着将信息数组通过v-for循环与小网格进行绑定，这时候出现了一个问题，就是，如果你直接循环个9次，那么css就不好设计，因为如果你用浮动左对齐的话，那么九个网格全都会浮动到一行来，所以需要每3个网格给他套一个div，这样他才能实现3×3的网格，但是如何实现呢<ul>
+<li>一种是双重循环，我v-for都还不熟，双循环构思了好一会，也没确定要怎么实现，果断就放弃了</li>
+<li>另一种就是没一行就设置一个子组件，相当于总共是3个子组件，这个虽然可以解决当前的问题，但是缺陷也是显而易见，他们并不在一个组件中，所以数据之间不好交换处理，所以我想到了使用父子组件交互，对子组件的点击事件进行监听，点击后，将子组件的信息传输到父组件中（毕竟父亲就一个，就可以实现对事件的集中处理）</li>
+</ul>
+</li>
+<li>然后就是对父组件中的逻辑设计了，父组件中data里面塞一个跟子组件中一模一样的数组，用来接收子组件传过来的数据，子组件的发射事件中，我发送了两个参数（其实一个就行了）一个是（item.id）一个是（item），之所以是两个，是因为我当时没准备传item，就是准备接受item的id，实现记录网格的点击状态，并且冻结网格的操作</li>
+<li>接下来就是把传过来的数据塞进父组件中，我是用了一个for循环，遍历<code>childstats</code>数组，找到与传进来的id相同的那一项，将他的点击状态改成 “已点击”，同时设置它的玩家（玩家的设计思路是：通过 ‘有效’ 点击次数来判断玩家，之所以是’有效’，是因为我当时看那个示例，感觉那玩意不是一个button，是一个div，我就按照div写了，我当时还想着div怎么给他冻结。结果就通过<code>点击状态</code>和<code>点击次数</code>来实现了，’有效’点击的设计是通过判断他的 ）</li>
+<li>父组件对数组进行遍历，筛选出玩家1和2的行走路线，将其与lines数组进行比较，如果有符合的，那么就弹窗输出结果，游戏结束。</li>
+</ul>
+<h4 id="3-代码优化："><a href="#3-代码优化：" class="headerlink" title="3.代码优化："></a>3.代码优化：</h4><ul>
+<li>使用三个组件这个操作是下下策，父子组件交互强行增大了游戏逻辑得到复杂性，同时维护更新难度也会相应的加大。（不过初学Vue连带着父子组件交互也直接掌握了也是意外收获）</li>
+<li>新版本的对代码的重写，将三个组件通过双重循环，改为了一个组件，这样就完成了之前把数据处理全部由子组件完成的愿想。</li>
+<li>逐步实现了新加入功能：悔棋与记录下棋路线，实现时间回溯。我自己的思路是点击一次，将其点击记录记录到history数组中，这个history的内容与一个button绑定，通过点击按钮，实现时间回溯</li>
+<li>button中的click事件传入了当前的索引值，然后通过索引值，对在当前索引值后面的history数组中的对象的player属性进行清空，这样就可以实现时间回溯。</li>
+<li>后续学到了通过ES6中的各种牛逼的方法进行代码的简化，将一大坨代码精简成两三行代码，美观实用，而且逻辑清晰（善用，擅用方法！）</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saberwode.github.io">一叶凉夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saberwode.github.io/2023/01/03/problem_game/">https://saberwode.github.io/2023/01/03/problem_game/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saberwode.github.io" target="_blank">一叶凉夏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/work/">work</a></div><div class="post-share"><div class="social-share" data-image="/blog_img/9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/01/03/node_%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" title="内置模块"><img class="cover" src="/blog_img/3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">内置模块</div></div><div class="info-2"><div class="info-item-1">node内置模块1.path模块path模块可用于路径拼接 1234const path = require(&#x27;path&#x27;);const basePath = &#x27;ser/why&#x27;const fileName = &#x27;abc.txt&#x27;const filePath = path.resolve(basePath,fileNmae)  用的最多的就是path.resolve 关于路径拼接， 还有另一种方式 1const fileName  = path.join(basePath,fileName)  join，可以拼接三个或者多个路径，但是join并不会智能解析前面的’..&#x2F;‘ 而resolve可以智能解析前面的..&#x2F;将其解释为真实路径 获取路径信息 path.dirname(path)//表示文件路径 path.extname(path)//表示文件扩展名 path.basename(path)//表示文件名称 2.fs模块，文件读写12const info =...</div></div></div></a><a class="pagination-related" href="/2023/01/03/problem_problem/" title="problem"><img class="cover" src="/blog_img/7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">problem</div></div><div class="info-2"><div class="info-item-1">这里是问题汇总1.关于组件化问题：报错内容: did you register the component correctly? For recursive components, make sure to provide the &quot;name&quot; option. 翻译过来是： 您是否正确注册了组件？对于递归组件，请确保提供“name”选项 出现问题的原因： 所渲染的Vue实例不能在组件前面，若在前面创建实例，则无法读取到后面创建的组件。 即new Vue()&#x3D;&#x3D;实例化Vue要放在后面&#x3D;&#x3D; 此时问题解决，同时网上还会有引起类似报错的操作：  如果全局注册,组件名称问题:   若是组件名称是大写,Vue会报错. 可以修改为下面两种:  修改组件名称为小写,即mycomponent即可解决.  如使用局部注册,则是components少写了个s:         2.注意string类型和number类型比较会出问题1234567891011for (let item of this.childstats) &#123;   ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/01/03/problem_problem/" title="problem"><img class="cover" src="/blog_img/7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">problem</div></div><div class="info-2"><div class="info-item-1">这里是问题汇总1.关于组件化问题：报错内容: did you register the component correctly? For recursive components, make sure to provide the &quot;name&quot; option. 翻译过来是： 您是否正确注册了组件？对于递归组件，请确保提供“name”选项 出现问题的原因： 所渲染的Vue实例不能在组件前面，若在前面创建实例，则无法读取到后面创建的组件。 即new Vue()&#x3D;&#x3D;实例化Vue要放在后面&#x3D;&#x3D; 此时问题解决，同时网上还会有引起类似报错的操作：  如果全局注册,组件名称问题:   若是组件名称是大写,Vue会报错. 可以修改为下面两种:  修改组件名称为小写,即mycomponent即可解决.  如使用局部注册,则是components少写了个s:         2.注意string类型和number类型比较会出问题1234567891011for (let item of this.childstats) &#123;   ...</div></div></div></a><a class="pagination-related" href="/2023/01/03/vueProject_Tic%20Tac%20Toe/" title="Tic Tac Toe"><img class="cover" src="/blog_img/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">Tic Tac Toe</div></div><div class="info-2"><div class="info-item-1">Tic Tac Toe小游戏目前实现的功能： 初始化3×3的子组件网格 绑定网格id 点击网格，向父组件传递id值 父组件接收到id，会对其进行计数，初始为0接受到一次id，计数加一（第一次接受id，count &#x3D;1） 判断逻辑，如果count为奇数，且clickstate为1，修改其player值为1为偶数就修改为2,clicktate值置0 判断逻辑，如果点击过该网格（clickstate &#x3D;&#x3D;...</div></div></div></a><a class="pagination-related" href="/2023/01/03/vueProject_book/" title="book"><img class="cover" src="/blog_img/9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-03</div><div class="info-item-2">book</div></div><div class="info-2"><div class="info-item-1">书籍管理123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;	&lt;meta charset=&quot;utf-8&quot;&gt;	&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;	&lt;div id=&quot;app&quot;&gt;		&lt;table border=&quot;1&quot; cellspacing=&quot;0&quot;...</div></div></div></a><a class="pagination-related" href="/2023/05/08/work_Aicode%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/" title="Aicode案例分享"><img class="cover" src="/blog_img/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-08</div><div class="info-item-2">Aicode案例分享</div></div><div class="info-2"><div class="info-item-1">一、转化对象数组的格式1. 需求：有一个对象数组，需要将该数组转化为后端需要的格式数组： 123456789101112131415161718192021[    &#123;      enrollTaskId: 1105,      label: &#x27;对象1&#x27;    &#125;,    &#123;      id: 3,      parentId: 1105,      label: &#x27;对象2&#x27;    &#125;,    &#123;      id: 4,      parentId: 1105,      label: &#x27;对象3&#x27;    &#125;,    &#123;      id: 66,      parentId: 1200,      label: &#x27;对象4&#x27;    &#125;  ]  转化后的数组： 12345678910[    &#123;      enrollTaskId: 1105,      channelIds: [3, 4]    &#125;,  ...</div></div></div></a><a class="pagination-related" href="/2023/03/13/work_nginx/" title="nginx"><img class="cover" src="/blog_img/3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-13</div><div class="info-item-2">nginx</div></div><div class="info-2"><div class="info-item-1">nginxnginx虚拟主机配置文件(conf.d)如果虚拟主机配置多了，需要将配置文件拆分出来，此时可将文件放在conf.d中，建立各自对应的配置文件。 让上述配置生效的话需要在nginx.conf的http块中加上include conf.d/*.conf; </div></div></div></a><a class="pagination-related" href="/2023/12/18/work_%E4%B8%8A%E4%BC%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" title="上传详细设计"><img class="cover" src="/blog_img/5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-18</div><div class="info-item-2">上传详细设计</div></div><div class="info-2"><div class="info-item-1">上传文件详细设计设计背景 老文件上传为jquery编写的，需要引入jquery文件以及核心js文件 文件上传依赖的库很多年没有更新维护，可能会遇到难以维护的bug 重构基于vue3，使用组件化开发模式，使得代码更加模块化和可维护，避免引入jquery等额外库和依赖 使用TypeScript能够更好地进行代码提示和静态类型检查 增加上传的可定制化能力和可扩展能力 使上传文件模块更加轻量化，保留核心必要逻辑  需求背景 支持多线程进行文件上传，文件上传等候排队 支持分片上传，可通过配置开启关闭 支持文件秒传 定制化文件上传url，以及文件上传完成通知接口url 支持文件上传进度实时回调，文件总进度分进度 支持文件错误重传 支持文件自定义校验 支持上传文件个性化区域定制 兼容旧版文件文件上传服务，可以实现无感替换  整体设计框架外部交互流程  上传文件系统对外主要就是初始化配置以及文件合规校验：  用户token，用于调起上传接口 可接受的文件类型，array类型有几种类型”Image”,  “Video”,”Audio”, “PDF”,”Word”, “Excel”,...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tic-Tac-Toe%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Tic Tac Toe项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-v-for%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%EF%BC%9A"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.v-for使用报错：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9C%AC%E6%AC%A1%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.本次设计思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%EF%BC%9A"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.代码优化：</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 一叶凉夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
